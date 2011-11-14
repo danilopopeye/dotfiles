@@ -63,6 +63,12 @@ nnoremap <C-l> <C-w>l
 set laststatus=2
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 
+" Command-T
+let g:CommandTMaxHeight = 15
+set wildignore+=.git
+nmap <silent> <C-T> :CommandT<CR>
+nmap <silent> <C-F12> :CommandTFlush<CR>
+
 " solarized
 set t_Co=256
 set background=dark
