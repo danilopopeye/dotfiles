@@ -7,3 +7,6 @@
 [submodule "bundle/supertab"]
 	path = bundle/supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "bundle/coffeescript"]
+	path = bundle/coffeescript
+	url = https://github.com/kchmck/vim-coffee-script.git
