@@ -1,3 +1,5 @@
+set nocompatible
+
 " pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
@@ -6,7 +8,6 @@ call pathogen#helptags()
 syntax on
 
 " options
-set nocompatible
 set showmatch " Show matching brackets.
 set hidden " Hide buffers when they are abandoned
 set number
