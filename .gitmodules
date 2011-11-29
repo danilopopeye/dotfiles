@@ -16,3 +16,6 @@
 [submodule "bundle/perdirvimrc"]
 	path = bundle/perdirvimrc
 	url = https://github.com/vim-scripts/perdirvimrc--Autoload-vimrc-files-per-di.git
+[submodule "bundle/jasmine"]
+	path = bundle/jasmine
+	url = git://github.com/claco/jasmine.vim.git
