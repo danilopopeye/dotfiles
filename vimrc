@@ -5,6 +5,8 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
+filetype plugin indent on
+
 syntax on
 
 " options
@@ -66,7 +68,7 @@ set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 
 " Command-T
 let g:CommandTMaxHeight = 15
-set wildignore+=.git
+set wildignore+=.git,node_modules
 nmap <silent> <C-T> :CommandT<CR>
 nmap <silent> <C-F12> :CommandTFlush<CR>
 
