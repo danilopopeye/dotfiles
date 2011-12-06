@@ -50,6 +50,12 @@ map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
+" don't fuck with arrow keys
+set t_ku=OA
+set t_kd=OB
+set t_kr=OC
+set t_kl=OD
+
 " tab navigation
 nnoremap <C-n> :tabnext<CR>
 nnoremap <C-p> :tabprevious<CR>
