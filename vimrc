@@ -41,8 +41,8 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " save on lost focus
 au FocusLost * :wa
 
-" make , the leader
-let mapleader = ","
+" make ; act like a :
+nnoremap ; :
 
 " dont use arrow keys :)
 map <up> <nop>
