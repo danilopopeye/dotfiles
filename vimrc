@@ -85,6 +85,7 @@ let g:Powerline_symbols = 'fancy'
 let g:CommandTMaxHeight = 15
 set wildignore+=.git,node_modules
 nmap <silent> <C-T> :CommandT<CR>
+nmap <silent> <C-B> :CommandTBuffer<CR>
 nmap <silent> <C-F12> :CommandTFlush<CR>
 
 " solarized
