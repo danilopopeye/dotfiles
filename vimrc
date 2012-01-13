@@ -79,6 +79,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " powerstatus
+set laststatus=2
 let g:Powerline_symbols = 'fancy'
 
 " Command-T
