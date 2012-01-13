@@ -1,6 +1,7 @@
 set nocompatible
 
 " pathogen
+filetype off
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
@@ -10,20 +11,29 @@ filetype plugin indent on
 syntax on
 
 " options
-set showmatch " Show matching brackets.
-set hidden " Hide buffers when they are abandoned
+set showmode
+set showmatch
+set hidden
 set number
 set smartindent
 set autoindent
-set tabstop=2 shiftwidth=2 softtabstop=2
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set noexpandtab
 set ignorecase
+set smartcase
 set hlsearch
-set nobackup
-set visualbell " don't beep
-set noerrorbells " don't beep
+set incsearch
+set visualbell
+set noerrorbells
 set nobackup
 set noswapfile
+set listchars=tab:▸\ ,trail:·,extends:#,nbsp:·
+set nolist
+set backspace=indent,eol,start
+set scrolloff=3
+set pastetoggle=<F2>
 
 " remove unnecessary whitespace
 autocmd BufRead * highlight BadWhitespace ctermbg=red guibg=red
