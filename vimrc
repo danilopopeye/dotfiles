@@ -78,9 +78,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" status line
-set laststatus=2
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
+" powerstatus
+let g:Powerline_symbols = 'fancy'
 
 " Command-T
 let g:CommandTMaxHeight = 15
