@@ -11,6 +11,7 @@ filetype plugin indent on
 syntax on
 
 " options
+set noexpandtab
 set showmode
 set showmatch
 set hidden
@@ -20,7 +21,6 @@ set autoindent
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set noexpandtab
 set ignorecase
 set smartcase
 set hlsearch
@@ -47,6 +47,9 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType ruby set omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" map leader
+let mapleader = ","
 
 " save on lost focus
 au FocusLost * :wa
@@ -85,8 +88,8 @@ let g:Powerline_symbols = 'fancy'
 " Command-T
 let g:CommandTMaxHeight = 15
 set wildignore+=.git,node_modules
-nmap <silent> <C-T> :CommandT<CR>
-nmap <silent> <C-B> :CommandTBuffer<CR>
+nmap <silent> ,t :CommandT<CR>
+nmap <silent> ,b :CommandTBuffer<CR>
 nmap <silent> <C-F12> :CommandTFlush<CR>
 
 " solarized
