@@ -92,6 +92,13 @@ nmap <silent> ,t :CommandT<CR>
 nmap <silent> ,b :CommandTBuffer<CR>
 nmap <silent> <C-F12> :CommandTFlush<CR>
 
+" NERDTree
+nmap <silent> ,n :NERDTreeToggle<CR>
+
+" tagbar
+nmap <silent> ,g :TagbarToggle<CR>
+nmap <silent> ,G :TagbarOpenAutoClose<CR>
+
 " solarized
 set t_Co=256
 set background=dark
