@@ -11,7 +11,6 @@ filetype plugin indent on
 syntax on
 
 " options
-set noexpandtab
 set showmode
 set showmatch
 set hidden
@@ -21,6 +20,7 @@ set autoindent
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+set expandtab
 set ignorecase
 set smartcase
 set hlsearch
