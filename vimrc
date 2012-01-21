@@ -57,6 +57,10 @@ au FocusLost * :wa
 " make ; act like a :
 nnoremap ; :
 
+" window splitting
+nmap ,s :split<CR>
+nmap ,v :vsplit<CR>
+
 " dont use arrow keys :)
 map <up> <nop>
 map <down> <nop>
