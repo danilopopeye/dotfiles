@@ -39,7 +39,6 @@ set pastetoggle=<F2>
 autocmd BufRead * highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufRead * match BadWhitespace /^\t\+/
 autocmd BufRead * match BadWhitespace /\s\+$/
-" autocmd BufWritePre * :%s/\s\+$//e
 
 " html js css complete ruby xml
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
