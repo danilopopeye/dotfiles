@@ -57,8 +57,8 @@ au FocusLost * :wa
 nnoremap ; :
 
 " window splitting
-nmap ,s :split<CR>
-nmap ,v :vsplit<CR>
+nmap <leader>s :split<CR>
+nmap <leader>v :vsplit<CR>
 
 " dont use arrow keys :)
 map <up> <nop>
@@ -91,16 +91,16 @@ let g:Powerline_symbols = 'fancy'
 " Command-T
 let g:CommandTMaxHeight = 15
 set wildignore+=.git,node_modules
-nmap <silent> ,t :CommandT<CR>
-nmap <silent> ,b :CommandTBuffer<CR>
+nmap <silent> <leader>t :CommandT<CR>
+nmap <silent> <leader>b :CommandTBuffer<CR>
 nmap <silent> <C-F12> :CommandTFlush<CR>
 
 " NERDTree
-nmap <silent> ,n :NERDTreeToggle<CR>
+nmap <silent> <leader>n :NERDTreeToggle<CR>
 
 " tagbar
-nmap <silent> ,g :TagbarToggle<CR>
-nmap <silent> ,G :TagbarOpenAutoClose<CR>
+nmap <silent> <leader>g :TagbarToggle<CR>
+nmap <silent> <leader>G :TagbarOpenAutoClose<CR>
 
 " solarized
 set t_Co=256
