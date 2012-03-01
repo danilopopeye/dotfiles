@@ -26,6 +26,7 @@ alias k9="kill -9"
 alias be="bundle exec"
 alias bi="bundle install"
 alias bu="bundle update"
+alias bo="bundle open"
 
 # Git Completion
 source ~/.git-completion.sh
