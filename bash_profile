@@ -28,6 +28,9 @@ alias bi="bundle install"
 alias bu="bundle update"
 alias bo="bundle open"
 
+# fix song without extension
+alias fixmp3="for f in *; do mv \"$f\" \"$f.mp3\"; done;"
+
 # Git Completion
 source ~/.git-completion.sh
 
