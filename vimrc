@@ -56,6 +56,9 @@ au FocusLost * :wa
 " make ; act like a :
 nnoremap ; :
 
+" clear search highlighting
+nnoremap <silent> <leader>/ :nohlsearch<CR>
+
 " window splitting
 nmap <leader>s :split<CR>
 nmap <leader>v :vsplit<CR>
