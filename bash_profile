@@ -11,6 +11,11 @@ if [ -f /opt/local/etc/bash_completion ]; then
   . /opt/local/etc/bash_completion
 fi
 
+# Git Completion
+if [ -f ~/.git-completion.sh ]; then
+  . ~/.git-completion.sh
+fi
+
 export GREP_OPTIONS="--color"
 
 # Load RVM function
@@ -37,9 +42,6 @@ alias bo="bundle open"
 
 # fix song without extension
 alias fixmp3="for f in *; do mv \"$f\" \"$f.mp3\"; done;"
-
-# Git Completion
-source ~/.git-completion.sh
 
 # Make vim the default editor
 export EDITOR="vim"
