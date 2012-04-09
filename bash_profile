@@ -46,7 +46,7 @@ export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 
 # Make some commands not show up in history
-export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help"
+export HISTIGNORE="l:ll:la:ls:ls *:cd:cd -:pwd;exit:date:* --help"
 
 ###-begin-npm-completion-###
 #
