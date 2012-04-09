@@ -1,8 +1,15 @@
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules"
 
-# git-flow completion
-. `brew --prefix`/etc/bash_completion.d/git-flow-completion.bash
+# brew git-flow completion
+if [ -f /usr/local/bin/brew ]; then
+  . `brew --prefix`/etc/bash_completion.d/git-flow-completion.bash
+fi
+
+# MacPorts bash_completion
+if [ -f /opt/local/etc/bash_completion ]; then
+  . /opt/local/etc/bash_completion
+fi
 
 export GREP_OPTIONS="--color"
 
