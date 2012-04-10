@@ -47,6 +47,9 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType ruby set omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
+" call sudo with w!!
+cmap w!! w !sudo tee % >/dev/null
+
 " map leader
 let mapleader = ","
 
