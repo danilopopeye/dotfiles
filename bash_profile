@@ -22,7 +22,7 @@ export GREP_OPTIONS="--color"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # Git branch
-PS1='\[\033[1;37m\][\u@\[\033[1;32m\]\h\[\033[00m\]\[\033[34m\]:\[\033[1;34m\]\w\[\033[1;35m\]$(    __git_ps1 " (%s)")\[\033[1;37m\]]\$\[\033[00m\] '
+PS1='\[\033[1;37m\]\u ✭ \[\033[1;32m\]\h\[\033[00m\]\[\033[34m\] λ \[\033[1;34m\]\w\[\033[1;35m\]$(    __git_ps1 " (%s)") \[\033[1;37m\]→\[\033[00m\] '
 
 # Use MacVim
 alias vim="/usr/local/bin/mvim -v"
