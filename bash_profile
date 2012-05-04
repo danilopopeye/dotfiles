@@ -16,6 +16,11 @@ if [ -f ~/.git-completion.sh ]; then
   . ~/.git-completion.sh
 fi
 
+# Local configs
+if [ -f ~/.localbash ]; then
+  . ~/.localbash
+fi
+
 export GREP_OPTIONS="--color"
 
 # Load RVM function
