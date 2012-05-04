@@ -35,6 +35,8 @@ set backspace=indent,eol,start
 set scrolloff=3
 set pastetoggle=<F2>
 
+autocmd VimEnter * call Pl#Load()
+
 " remove unnecessary whitespace
 autocmd BufRead * highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufRead * match BadWhitespace /^\t\+/
