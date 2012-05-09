@@ -39,8 +39,6 @@ set title
 set cursorline
 set foldenable
 
-autocmd VimEnter * call Pl#Load()
-
 " remove unnecessary whitespace
 autocmd BufRead * highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufRead * match BadWhitespace /^\t\+/
