@@ -1,4 +1,4 @@
-export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/lib/php/pear/bin:$PATH"
 export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules"
 
 # brew git-flow completion
