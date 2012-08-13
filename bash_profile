@@ -38,12 +38,16 @@ alias ll="ls -lhG"
 alias la="ls -alhG"
 alias psg="ps aux | grep"
 alias k9="kill -9"
+alias json='python -mjson.tool'
 
 # Ruby and Rails aliases
 alias be="bundle exec"
 alias bi="bundle install"
 alias bu="bundle update"
 alias bo="bundle open"
+
+# python webserver
+alias server="python -m SimpleHTTPServer"
 
 # fix song without extension
 alias fixmp3="for f in *; do mv \"$f\" \"$f.mp3\"; done;"
