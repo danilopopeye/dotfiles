@@ -7,6 +7,7 @@ call pathogen#infect()
 call pathogen#helptags()
 
 filetype plugin indent on
+filetype plugin on
 
 syntax on
 
@@ -34,6 +35,9 @@ set nolist
 set backspace=indent,eol,start
 set scrolloff=3
 set pastetoggle=<F2>
+set title
+set cursorline
+set foldenable
 
 autocmd VimEnter * call Pl#Load()
 
@@ -43,11 +47,12 @@ autocmd BufRead * match BadWhitespace /^\t\+/
 autocmd BufRead * match BadWhitespace /\s\+$/
 
 " html js css complete ruby xml
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType ruby set omnifunc=rubycomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
+autocmd FileType ruby setl omnifunc=rubycomplete#Complete
+autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
+autocmd FileType coffee setl tabstop=2|setl shiftwidth=2|setl softtabstop=2|setl foldmethod=indent|setl foldlevel=1
 
 " call sudo with w!!
 cmap w!! w !sudo tee % >/dev/null
