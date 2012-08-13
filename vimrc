@@ -38,8 +38,9 @@ set pastetoggle=<F2>
 set title
 set cursorline
 set foldenable
+set wildignore+=.DS_Store,node_modules,live-dump
 
-" remove unnecessary whitespace
+" mark unnecessary whitespace
 autocmd BufRead * highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufRead * match BadWhitespace /^\t\+/
 autocmd BufRead * match BadWhitespace /\s\+$/
@@ -99,12 +100,9 @@ nnoremap <C-l> <C-w>l
 set laststatus=2
 let g:Powerline_symbols = 'fancy'
 
-" Command-T
-let g:CommandTMaxHeight = 15
-set wildignore+=.git,node_modules
-nmap <silent> <leader>t :CommandT<CR>
-nmap <silent> <leader>b :CommandTBuffer<CR>
-nmap <silent> <C-F12> :CommandTFlush<CR>
+" ctrlp
+nmap <silent> <leader>b :CtrlPBuffer<CR>
+let g:ctrlp_clear_cache_on_exit=0
 
 " NERDTree
 nmap <silent> <leader>n :NERDTreeToggle<CR>
