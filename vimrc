@@ -50,6 +50,7 @@ autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType ruby setl omnifunc=rubycomplete#Complete
+autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
 autocmd FileType coffee setl tabstop=2|setl shiftwidth=2|setl softtabstop=2|setl foldmethod=indent|setl foldlevel=1
 
@@ -110,6 +111,18 @@ nmap <silent> <leader>n :NERDTreeToggle<CR>
 " tagbar
 nmap <silent> <leader>g :TagbarToggle<CR>
 nmap <silent> <leader>G :TagbarOpenAutoClose<CR>
+
+" neocomplcache
+let g:acp_enableAtStartup = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+imap <C-k> <Plug>(neocomplcache_snippets_expand)
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-g> neocomplcache#undo_completion()
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " solarized
 set t_Co=256
