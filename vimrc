@@ -86,10 +86,8 @@ set t_kr=OC
 set t_kl=OD
 
 " tab navigation
-nnoremap <C-n> :tabnext<CR>
-nnoremap <C-p> :tabprevious<CR>
-nnoremap <C-d> :tabclose<CR>
-nnoremap <C-o> :tabnew<CR>
+nnoremap <Tab> :tabnext<CR>
+nnoremap <S-Tab> :tabprevious<CR>
 
 " window navigation
 nnoremap <C-h> <C-w>h
@@ -102,8 +100,12 @@ set laststatus=2
 let g:Powerline_symbols = 'fancy'
 
 " ctrlp
+nmap <silent> <leader>t :CtrlP<CR>
 nmap <silent> <leader>b :CtrlPBuffer<CR>
+nmap <silent> <leader>m :CtrlPMRU<CR>
+let g:ctrlp_working_path_mode = ''
 let g:ctrlp_clear_cache_on_exit=0
+let g:ctrlp_max_height = 15
 
 " NERDTree
 nmap <silent> <leader>n :NERDTreeToggle<CR>
