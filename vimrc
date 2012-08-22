@@ -66,6 +66,10 @@ au FocusLost * :wa
 " make ; act like a :
 nnoremap ; :
 
+" don't mess with wrap movement
+nnoremap j gj
+nnoremap k gk
+
 " clear search highlighting
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 
