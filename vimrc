@@ -52,7 +52,7 @@ autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType ruby setl omnifunc=rubycomplete#Complete
 autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
-autocmd FileType coffee setl tabstop=2|setl shiftwidth=2|setl softtabstop=2|setl foldmethod=indent|setl foldlevel=1
+autocmd FileType coffee setl foldmethod=indent|setl foldlevel=1
 
 " call sudo with w!!
 cmap w!! w !sudo tee % >/dev/null
