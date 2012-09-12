@@ -58,3 +58,6 @@
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "bundle/tomorrow-theme"]
+	path = bundle/tomorrow-theme
+	url = https://github.com/chriskempson/tomorrow-theme.git
