@@ -3,6 +3,8 @@
   email = code@danilosousa.net
 [branch]
   autosetuprebase = always
+[push]
+  default = current
 [color]
   ui = true
   branch = auto
