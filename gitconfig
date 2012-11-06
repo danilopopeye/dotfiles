@@ -43,3 +43,5 @@
   tool = vimdiff
 [difftool]
   prompt = false
+[credential]
+  helper = osxkeychain
