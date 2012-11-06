@@ -38,6 +38,7 @@ set pastetoggle=<F2>
 set title
 set cursorline
 set foldenable
+set foldmethod=syntax
 set wildignore+=.DS_Store,node_modules,live-dump
 
 " mark unnecessary whitespace
