@@ -39,6 +39,7 @@ set title
 set cursorline
 set foldenable
 set foldmethod=syntax
+set nofoldenable
 set wildignore+=.DS_Store,node_modules,live-dump
 
 " mark unnecessary whitespace
