@@ -61,3 +61,6 @@
 [submodule "bundle/tomorrow-theme"]
 	path = bundle/tomorrow-theme
 	url = https://github.com/chriskempson/tomorrow-theme.git
+[submodule "powerline-bash"]
+	path = powerline-bash
+	url = https://github.com/milkbikis/powerline-bash.git
