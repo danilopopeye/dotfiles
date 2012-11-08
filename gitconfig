@@ -29,8 +29,11 @@
 [alias]
   st = status
   ci = commit
+  cav = commit -av
   br = branch -v
   co = checkout
+  pr = pull --rebase
+  po = push origin
   df = diff
   dc = diff --cached
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit
