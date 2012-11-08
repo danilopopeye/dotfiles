@@ -1,14 +1,11 @@
 export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/lib/php/pear/bin:$PATH"
 export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules"
 
-# brew git-flow completion
+# brew completion
 if [ -f /usr/local/bin/brew ]; then
-  . `brew --prefix`/etc/bash_completion.d/git-flow-completion.bash
-fi
-
-# Git Completion
-if [ -f ~/.git-completion.sh ]; then
-  . ~/.git-completion.sh
+  source `brew --prefix`/etc/bash_completion.d/git-completion.bash
+  source `brew --prefix`/etc/bash_completion.d/git-flow-completion.bash
+  source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 fi
 
 # Local configs
