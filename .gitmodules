@@ -64,3 +64,6 @@
 [submodule "powerline-bash"]
 	path = powerline-bash
 	url = https://github.com/milkbikis/powerline-bash.git
+[submodule "bundle/vim-rvm"]
+	path = bundle/vim-rvm
+	url = https://github.com/tpope/vim-rvm.git
