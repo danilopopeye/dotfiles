@@ -67,3 +67,6 @@
 [submodule "bundle/vim-rvm"]
 	path = bundle/vim-rvm
 	url = https://github.com/tpope/vim-rvm.git
+[submodule "bundle/vim-uninpaired"]
+	path = bundle/vim-uninpaired
+	url = https://github.com/tpope/vim-unimpaired.git
