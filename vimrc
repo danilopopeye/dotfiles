@@ -40,7 +40,7 @@ set cursorline
 set foldenable
 set foldmethod=syntax
 set nofoldenable
-set wildignore+=.DS_Store,node_modules,live-dump
+set wildignore+=.DS_Store,node_modules
 
 " mark unnecessary whitespace
 autocmd BufRead * highlight BadWhitespace ctermbg=red guibg=red
@@ -51,7 +51,7 @@ autocmd BufRead * match BadWhitespace /\s\+$/
 autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
-autocmd FileType ruby setl omnifunc=rubycomplete#Complete
+autocmd FileType ruby setl omnifunc=rubycomplete#Complete|setl foldmethod=indent
 autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
 autocmd FileType coffee setl foldmethod=indent|setl foldlevel=1
@@ -148,7 +148,7 @@ inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
-" solarized
+" color and theme
 set t_Co=256
 set background=dark
 colorscheme tomorrow-night
@@ -168,7 +168,7 @@ endfunction
 
 function! RunSpec(args)
   let spec = RailsScriptIfExists("rspec --drb")
-  let cmd = spec . " " . a:args . " -fn -c " . @%
+  let cmd = spec . " " . a:args . " -fn --no-color " . @%
   execute ":! echo " . cmd . " && " . cmd
 endfunction
 
@@ -195,4 +195,4 @@ function! RunTest(args)
 endfunction
 
 map <Leader>r :call RunTest("")<CR>
-map <Leader>t :call RunTestFile("")<CR> 
+map <Leader>t :call RunTestFile("")<CR>
