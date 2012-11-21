@@ -19,7 +19,10 @@ export GREP_OPTIONS="--color"
 PATH=$PATH:$HOME/.rvm/bin
 
 # Load RVM function
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# tmuxinator
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 # Git branch
 # PS1='\[\033[G\]\[\033[1;37m\]\u ✭ \[\033[1;32m\]\h\[\033[00m\]\[\033[34m\] λ \[\033[1;34m\]\w\[\033[1;35m\]$(    __git_ps1 " (%s)") \[\033[1;37m\]→\[\033[00m\] '
@@ -38,6 +41,7 @@ alias la="ls -alhG"
 alias psg="ps aux | grep"
 alias k9="kill -9"
 alias json='python -mjson.tool'
+alias tmux="TERM=screen-256color-bce tmux"
 
 # Ruby and Rails aliases
 alias be="bundle exec"
