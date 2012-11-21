@@ -101,7 +101,21 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" powerstatus
+" clear fugitive buffers on close
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" fugitive maps
+nmap <silent> <Leader>gs :Gstatus<CR>
+nmap <silent> <Leader>gl :Glog -15<CR>
+nmap <silent> <Leader>gc :Gcommit<CR>
+nmap <silent> <Leader>gm :Gmove<CR>
+nmap <silent> <Leader>gr :Gremove<CR>
+nmap <silent> <Leader>gd :Gdiff<CR>
+nmap <silent> <Leader>gdv :Gvdiff<CR>
+nmap <silent> <Leader>gds :Gsdiff<CR>
+nmap <Leader>gg :Ggrep 
+
+" powerline
 set laststatus=2
 let g:Powerline_symbols = 'fancy'
 
