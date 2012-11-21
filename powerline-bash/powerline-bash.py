@@ -229,7 +229,8 @@ if __name__ == '__main__':
     #p.append(Segment(powerline, ' \\u ', 250, 240))
     #p.append(Segment(powerline, ' \\h ', 250, 238))
     add_cwd_segment(p, cwd, 5)
-    add_repo_segment(p, cwd)
+    if os.getenv('TMUX') == None:
+      add_repo_segment(p, cwd)
     add_root_indicator(p, sys.argv[1] if len(sys.argv) > 1 else 0)
     sys.stdout.write(p.draw())
 
