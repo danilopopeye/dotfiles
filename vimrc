@@ -106,9 +106,10 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " fugitive maps
 nmap <silent> <Leader>gs :Gstatus<CR>
+nmap <silent> <Leader>gb :Gblame<CR>
 nmap <silent> <Leader>gl :Glog -15<CR>
 nmap <silent> <Leader>gc :Gcommit<CR>
-nmap <silent> <Leader>gm :Gmove<CR>
+nmap <silent> <Leader>gm :Gmove
 nmap <silent> <Leader>gr :Gremove<CR>
 nmap <silent> <Leader>gd :Gdiff<CR>
 nmap <silent> <Leader>gdv :Gvdiff<CR>
