@@ -49,7 +49,7 @@ autocmd BufRead * match BadWhitespace /\s\+$/
 
 " html js css complete ruby xml
 autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags|setl foldmethod=indent
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType ruby setl omnifunc=rubycomplete#Complete|setl foldmethod=indent
 autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
@@ -169,7 +169,7 @@ endfunction
 
 function! RunSpec(args)
   let spec = RailsScriptIfExists("rspec --drb")
-  let cmd = spec . " " . a:args . " -fn --no-color " . @%
+  let cmd = spec . " " . a:args . " -fn " . @%
   execute ":! echo " . cmd . " && " . cmd
 endfunction
 
