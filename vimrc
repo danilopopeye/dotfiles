@@ -49,12 +49,15 @@ autocmd BufRead * match BadWhitespace /\s\+$/
 
 " html js css complete ruby xml
 autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags|setl foldmethod=indent
+autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
-autocmd FileType ruby setl omnifunc=rubycomplete#Complete|setl foldmethod=indent
+autocmd FileType ruby setl omnifunc=rubycomplete#Complete
 autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
 autocmd FileType coffee setl foldmethod=indent|setl foldlevel=1
+
+" foldmethod as indent 'cause syntax is slow
+autocmd FileType html,css,eruby,ruby setl foldmethod=indent
 
 " call sudo with w!!
 cmap w!! w !sudo tee % >/dev/null
