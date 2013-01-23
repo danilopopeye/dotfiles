@@ -34,7 +34,6 @@ set listchars=tab:▸\ ,trail:·,extends:#,nbsp:·
 set nolist
 set backspace=indent,eol,start
 set scrolloff=3
-set pastetoggle=<F2>
 set title
 set cursorline
 set foldenable
@@ -81,6 +80,9 @@ nnoremap <silent> <leader>/ :nohlsearch<CR>
 " window splitting
 nmap <leader>s :split<CR>
 nmap <leader>v :vsplit<CR>
+
+" pastetoggle has timeout issue with powerline
+map <F2> :set paste!<CR>
 
 " dont use arrow keys :)
 map <up> <nop>
