@@ -68,3 +68,6 @@ export HISTCONTROL=ignoredups
 
 # Make some commands not show up in history
 export HISTIGNORE="l:ll:la:ls:ls *:cd:cd ..:cd -:pwd;exit:date:* --help"
+
+# Toggle OS X hidden files
+alias hidden_files="defaults write com.apple.finder AppleShowAllFiles"
