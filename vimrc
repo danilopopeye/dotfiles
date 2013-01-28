@@ -40,6 +40,8 @@ set foldenable
 set foldmethod=syntax
 set nofoldenable
 set wildignore+=.DS_Store,node_modules
+set wildmenu
+set wildmode=list:longest
 
 " mark unnecessary whitespace
 autocmd BufRead * highlight BadWhitespace ctermbg=red guibg=red
@@ -57,6 +59,13 @@ autocmd FileType coffee setl foldmethod=indent|setl foldlevel=1
 
 " foldmethod as indent 'cause syntax is slow
 autocmd FileType html,css,eruby,ruby setl foldmethod=indent
+
+" treat question marks as part of a word in ruby
+" autocmd BufRead *.rb,*.rake,*.rhtml,<ruby> set isk=?,@,48-57,_,192-255
+
+" Open new windows on the bottom and right instead of the top and left.
+set splitbelow
+set splitright
 
 " call sudo with w!!
 cmap w!! w !sudo tee % >/dev/null
@@ -119,7 +128,7 @@ nmap <silent> <Leader>gr :Gremove<CR>
 nmap <silent> <Leader>gd :Gdiff<CR>
 nmap <silent> <Leader>gdv :Gvdiff<CR>
 nmap <silent> <Leader>gds :Gsdiff<CR>
-nmap <Leader>gg :Ggrep 
+nmap <Leader>gg :Ggrep
 
 " powerline
 set laststatus=2
