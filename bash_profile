@@ -71,3 +71,7 @@ export HISTIGNORE="l:ll:la:ls:ls *:cd:cd ..:cd -:pwd;exit:date:* --help"
 
 # Toggle OS X hidden files
 alias hidden_files="defaults write com.apple.finder AppleShowAllFiles"
+
+# MAC manipulators
+alias  random_mac='sudo ifconfig en0 ether `openssl rand -hex 6 | sed "s/\(..\)/\1:/g; s/.$//"`'
+alias restore_mac='sudo ifconfig en0 ether 60:c5:47:8f:1a:e6'
