@@ -1,10 +1,43 @@
 set nocompatible
-
-" pathogen
 filetype off
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" Vundle bundles
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'docunext/closetag.vim'
+Bundle 'aelesbao/vim-session'
+Bundle 'tsaleh/vim-matchit'
+Bundle 'kien/ctrlp.vim'
+Bundle 'mileszs/ack.vim'
+
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neosnippet'
+Bundle 'scrooloose/syntastic'
+Bundle 'airblade/vim-gitgutter'
+
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'groenewege/vim-less'
+Bundle 'nono/vim-handlebars'
+Bundle 'chrisbra/csv.vim'
+
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-rvm'
 
 filetype plugin indent on
 filetype plugin on
@@ -130,6 +163,9 @@ nmap <silent> <Leader>gdv :Gvdiff<CR>
 nmap <silent> <Leader>gds :Gsdiff<CR>
 nmap <Leader>gg :Ggrep
 
+" vim-gitgutter
+nmap <silent> <Leader>df :call ToggleGitGutterLineHighlights()<CR>
+
 " powerline
 set laststatus=2
 let g:Powerline_symbols = 'fancy'
@@ -150,6 +186,10 @@ nmap <silent> <leader>n :NERDTreeToggle<CR>
 " tagbar
 nmap <silent> <leader>g :TagbarToggle<CR>
 nmap <silent> <leader>G :TagbarOpenAutoClose<CR>
+
+" session
+let g:session_autoload = 'yes'
+let g:session_autosave = 'yes'
 
 " neocomplcache
 let g:acp_enableAtStartup = 0
