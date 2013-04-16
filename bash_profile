@@ -1,4 +1,4 @@
-export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/lib/php/pear/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules"
 
 # brew completion
@@ -33,6 +33,7 @@ export PROMPT_COMMAND="_update_ps1"
 
 # Use MacVim
 alias vim="/usr/local/bin/mvim -v"
+alias vimdiff="/usr/local/bin/mvim -v mvimdiff"
 
 # Bash aliases
 alias l="ls -hG"
@@ -45,9 +46,10 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 # Ruby and Rails aliases
 alias be="bundle exec"
-alias bi="bundle install"
+alias bi="bundle check || bundle install"
 alias bu="bundle update"
 alias bo="bundle open"
+alias bc="bundle check"
 
 # python webserver
 alias server="python -m SimpleHTTPServer"
