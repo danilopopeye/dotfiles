@@ -75,6 +75,7 @@ set nofoldenable
 set wildignore+=.DS_Store,node_modules
 set wildmenu
 set wildmode=list:longest
+set shell=/usr/local/bin/zsh
 
 " dont continue comments when pushing o/O
 set formatoptions-=o
