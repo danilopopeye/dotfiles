@@ -76,13 +76,15 @@ set wildignore+=.DS_Store,node_modules
 set wildmenu
 set wildmode=list:longest
 
+" dont continue comments when pushing o/O
+set formatoptions-=o
+
 " mark unnecessary whitespace
 autocmd BufRead * highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufRead * match BadWhitespace /^\t\+/
 autocmd BufRead * match BadWhitespace /\s\+$/
 
 " html js css complete ruby xml
-autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType ruby setl omnifunc=rubycomplete#Complete
@@ -90,11 +92,12 @@ autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
 autocmd FileType coffee setl foldmethod=indent|setl foldlevel=1
 
-" foldmethod as indent 'cause syntax is slow
-autocmd FileType html,css,eruby,ruby setl foldmethod=indent
+" javascript
+autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
+au FileType javascript call JavaScriptFold()
 
-" treat question marks as part of a word in ruby
-" autocmd BufRead *.rb,*.rake,*.rhtml,<ruby> set isk=?,@,48-57,_,192-255
+" foldmethod as indent 'cause syntax is slow
+autocmd FileType html,css,eruby,ruby,yaml setl foldmethod=indent
 
 " Open new windows on the bottom and right instead of the top and left.
 set splitbelow
@@ -156,6 +159,7 @@ nmap <silent> <Leader>gs :Gstatus<CR>
 nmap <silent> <Leader>gb :Gblame<CR>
 nmap <silent> <Leader>gl :Glog -15<CR>
 nmap <silent> <Leader>gc :Gcommit<CR>
+nmap <silent> <Leader>ga :Gcommit --amend<CR>
 nmap <silent> <Leader>gm :Gmove
 nmap <silent> <Leader>gr :Gremove<CR>
 nmap <silent> <Leader>gd :Gdiff<CR>
