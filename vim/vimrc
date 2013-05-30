@@ -18,25 +18,28 @@ Bundle 'tsaleh/vim-matchit'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
 
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
+" Bundle 'terryma/vim-multiple-cursors'
+" Bundle 'Shougo/neocomplcache'
+" Bundle 'Shougo/neosnippet'
 Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-dispatch'
 Bundle 'airblade/vim-gitgutter'
 
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'groenewege/vim-less'
-Bundle 'nono/vim-handlebars'
-Bundle 'chrisbra/csv.vim'
+" Bundle 'jelera/vim-javascript-syntax'
+" Bundle 'kchmck/vim-coffee-script'
+" Bundle 'digitaltoad/vim-jade'
+" Bundle 'groenewege/vim-less'
+" Bundle 'nono/vim-handlebars'
+" Bundle 'chrisbra/csv.vim'
 
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-rvm'
 
 filetype plugin indent on
@@ -156,20 +159,22 @@ nnoremap <C-l> <C-w>l
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " fugitive maps
-nmap <silent> <Leader>gs :Gstatus<CR>
-nmap <silent> <Leader>gb :Gblame<CR>
-nmap <silent> <Leader>gl :Glog -15<CR>
-nmap <silent> <Leader>gc :Gcommit<CR>
-nmap <silent> <Leader>ga :Gcommit --amend<CR>
-nmap <silent> <Leader>gm :Gmove
-nmap <silent> <Leader>gr :Gremove<CR>
-nmap <silent> <Leader>gd :Gdiff<CR>
+nmap <silent> <Leader>gs  :Gstatus<CR>
+nmap <silent> <Leader>gb  :Gblame<CR>
+nmap <silent> <Leader>gl  :Glog -15<CR>
+nmap <silent> <Leader>gc  :Gcommit<CR>
+nmap <silent> <Leader>ga  :Gcommit --amend<CR>
+nmap <silent> <Leader>gm  :Gmove
+nmap <silent> <Leader>ge  :Gedit
+nmap <silent> <Leader>gr  :Gread<CR>
+nmap <silent> <Leader>grm :Gremove<CR>
+nmap <silent> <Leader>gd  :Gdiff<CR>
 nmap <silent> <Leader>gdv :Gvdiff<CR>
 nmap <silent> <Leader>gds :Gsdiff<CR>
 nmap <Leader>gg :Ggrep
 
 " vim-gitgutter
-nmap <silent> <Leader>df :call ToggleGitGutterLineHighlights()<CR>
+let g:gitgutter_eager=0
 
 " powerline
 set laststatus=2
