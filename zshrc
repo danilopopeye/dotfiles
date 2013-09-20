@@ -42,7 +42,10 @@ source $ZSH/oh-my-zsh.sh
 PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
 PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
 
-fpath=(/usr/local/share/zsh/zsh-completions $fpath)
+# fpath=(/usr/local/share/zsh $fpath)
+fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=(/usr/local/share/zsh/site-functions $fpath)
+
 # zsh highlight
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
