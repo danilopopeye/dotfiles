@@ -91,4 +91,10 @@ alias fix_open_with='/System/Library/Frameworks/CoreServices.framework/Versions/
 
 export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
+hitch() {
+  command hitch "$@"
+  if [[ -s "$HOME/.hitch_export_authors" ]] ; then source "$HOME/.hitch_export_authors" ; fi
+}
+alias unhitch='hitch -u'
+
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
