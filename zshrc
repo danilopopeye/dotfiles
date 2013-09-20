@@ -32,7 +32,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(battery brew gem git git-extras git-flow gitfast heroku node npm powify rails3 rake redis-cli rvm safe-paste tmux tmuxinator)
+plugins=(brew gem git git-extras git-flow-avh heroku node npm powify rails3 rake redis-cli rvm safe-paste tmux tmuxinator vagrant zeus)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -40,8 +40,11 @@ source $ZSH/oh-my-zsh.sh
 
 # export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
+PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
 
 fpath=(/usr/local/share/zsh/zsh-completions $fpath)
+# zsh highlight
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # tmuxinator
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
@@ -65,6 +68,7 @@ alias json='python -mjson.tool'
 # Ruby and Rails aliases
 alias be="bundle exec"
 alias bi="bundle check || bundle install"
+alias biv="bundle install --verbose"
 alias bu="bundle update"
 alias bo="bundle open"
 
@@ -85,8 +89,6 @@ alias hidden_files="defaults write com.apple.finder AppleShowAllFiles"
 # fix Open With menu
 alias fix_open_with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user && killall Finder'
 
-# MAC manipulators
-alias  random_mac='sudo ifconfig en0 ether `openssl rand -hex 6 | sed "s/\(..\)/\1:/g; s/.$//"`'
-alias restore_mac='sudo ifconfig en0 ether 60:c5:47:8f:1a:e6'
-
 export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
