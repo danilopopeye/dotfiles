@@ -20,7 +20,7 @@ Bundle 'mileszs/ack.vim'
 Bundle 'thoughtbot/vim-rspec'
 
 " Bundle 'terryma/vim-multiple-cursors'
-" Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplcache'
 " Bundle 'Shougo/neosnippet'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-dispatch'
@@ -41,6 +41,7 @@ Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rvm'
 
 filetype plugin indent on
@@ -76,7 +77,7 @@ set cursorline
 set foldenable
 set foldmethod=syntax
 set nofoldenable
-set wildignore+=.DS_Store,node_modules
+set wildignore+=.DS_Store,node_modules,*/tmp/*,*.so,*.swp
 set wildmenu
 set wildmode=list:longest
 set shell=/usr/local/bin/zsh
@@ -90,7 +91,7 @@ autocmd BufRead * match BadWhitespace /^\t\+/
 autocmd BufRead * match BadWhitespace /\s\+$/
 
 " html js css complete ruby xml
-autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType ruby setl omnifunc=rubycomplete#Complete
 autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
@@ -99,7 +100,7 @@ autocmd FileType coffee setl foldmethod=indent|setl foldlevel=1
 
 " javascript
 autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
-au FileType javascript call JavaScriptFold()
+" au FileType javascript call JavaScriptFold()
 
 " foldmethod as indent 'cause syntax is slow
 autocmd FileType html,css,eruby,ruby,yaml setl foldmethod=indent
@@ -118,7 +119,7 @@ let mapleader = ","
 au FocusLost * :wa
 
 " make ; act like a :
-nnoremap ; :
+" nnoremap ; :
 
 " don't mess with wrap movement
 nnoremap j gj
@@ -126,10 +127,6 @@ nnoremap k gk
 
 " clear search highlighting
 nnoremap <silent> <leader>/ :nohlsearch<CR>
-
-" window splitting
-nmap <leader>s :split<CR>
-nmap <leader>v :vsplit<CR>
 
 " pastetoggle has timeout issue with powerline
 map <F2> :set paste!<CR>
@@ -192,11 +189,7 @@ let g:ctrlp_max_height = 15
 let g:syntastic_coffee_lint_options='max_line_length=0'
 
 " NERDTree
-nmap <silent> <leader>n :NERDTreeToggle<CR>
-
-" tagbar
-nmap <silent> <leader>g :TagbarToggle<CR>
-nmap <silent> <leader>G :TagbarOpenAutoClose<CR>
+nmap <silent> <Leader>n :NERDTreeToggle<CR>
 
 " session
 let g:session_autoload = 'yes'
@@ -208,8 +201,6 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -218,6 +209,8 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 set t_Co=256
 set background=dark
 colorscheme tomorrow-night
+highlight NonText guibg=#060606
+highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
 autocmd FileType cucumber compiler cucumber | setl makeprg=cucumber\ -c\ \"%:p\"
 autocmd FileType ruby
