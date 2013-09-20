@@ -17,26 +17,31 @@ Bundle 'aelesbao/vim-session'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
+Bundle 'thoughtbot/vim-rspec'
 
-Bundle 'terryma/vim-multiple-cursors'
+" Bundle 'terryma/vim-multiple-cursors'
 Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
+" Bundle 'Shougo/neosnippet'
 Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-dispatch'
 Bundle 'airblade/vim-gitgutter'
 
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'groenewege/vim-less'
-Bundle 'nono/vim-handlebars'
-Bundle 'chrisbra/csv.vim'
+" Bundle 'jelera/vim-javascript-syntax'
+" Bundle 'kchmck/vim-coffee-script'
+" Bundle 'digitaltoad/vim-jade'
+" Bundle 'groenewege/vim-less'
+" Bundle 'nono/vim-handlebars'
+" Bundle 'chrisbra/csv.vim'
 
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rvm'
 
 filetype plugin indent on
@@ -72,9 +77,10 @@ set cursorline
 set foldenable
 set foldmethod=syntax
 set nofoldenable
-set wildignore+=.DS_Store,node_modules
+set wildignore+=.DS_Store,node_modules,*/tmp/*,*.so,*.swp
 set wildmenu
 set wildmode=list:longest
+set shell=/usr/local/bin/zsh
 
 " dont continue comments when pushing o/O
 set formatoptions-=o
@@ -85,7 +91,7 @@ autocmd BufRead * match BadWhitespace /^\t\+/
 autocmd BufRead * match BadWhitespace /\s\+$/
 
 " html js css complete ruby xml
-autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType ruby setl omnifunc=rubycomplete#Complete
 autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
@@ -94,7 +100,7 @@ autocmd FileType coffee setl foldmethod=indent|setl foldlevel=1
 
 " javascript
 autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
-au FileType javascript call JavaScriptFold()
+" au FileType javascript call JavaScriptFold()
 
 " foldmethod as indent 'cause syntax is slow
 autocmd FileType html,css,eruby,ruby,yaml setl foldmethod=indent
@@ -113,7 +119,7 @@ let mapleader = ","
 au FocusLost * :wa
 
 " make ; act like a :
-nnoremap ; :
+" nnoremap ; :
 
 " don't mess with wrap movement
 nnoremap j gj
@@ -121,10 +127,6 @@ nnoremap k gk
 
 " clear search highlighting
 nnoremap <silent> <leader>/ :nohlsearch<CR>
-
-" window splitting
-nmap <leader>s :split<CR>
-nmap <leader>v :vsplit<CR>
 
 " pastetoggle has timeout issue with powerline
 map <F2> :set paste!<CR>
@@ -155,20 +157,22 @@ nnoremap <C-l> <C-w>l
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " fugitive maps
-nmap <silent> <Leader>gs :Gstatus<CR>
-nmap <silent> <Leader>gb :Gblame<CR>
-nmap <silent> <Leader>gl :Glog -15<CR>
-nmap <silent> <Leader>gc :Gcommit<CR>
-nmap <silent> <Leader>ga :Gcommit --amend<CR>
-nmap <silent> <Leader>gm :Gmove
-nmap <silent> <Leader>gr :Gremove<CR>
-nmap <silent> <Leader>gd :Gdiff<CR>
+nmap <silent> <Leader>gs  :Gstatus<CR>
+nmap <silent> <Leader>gb  :Gblame<CR>
+nmap <silent> <Leader>gl  :Glog -15<CR>
+nmap <silent> <Leader>gc  :Gcommit<CR>
+nmap <silent> <Leader>ga  :Gcommit --amend<CR>
+nmap <silent> <Leader>gm  :Gmove
+nmap <silent> <Leader>ge  :Gedit
+nmap <silent> <Leader>gr  :Gread<CR>
+nmap <silent> <Leader>grm :Gremove<CR>
+nmap <silent> <Leader>gd  :Gdiff<CR>
 nmap <silent> <Leader>gdv :Gvdiff<CR>
 nmap <silent> <Leader>gds :Gsdiff<CR>
 nmap <Leader>gg :Ggrep
 
 " vim-gitgutter
-nmap <silent> <Leader>df :call ToggleGitGutterLineHighlights()<CR>
+let g:gitgutter_eager=0
 
 " powerline
 set laststatus=2
@@ -185,11 +189,7 @@ let g:ctrlp_max_height = 15
 let g:syntastic_coffee_lint_options='max_line_length=0'
 
 " NERDTree
-nmap <silent> <leader>n :NERDTreeToggle<CR>
-
-" tagbar
-nmap <silent> <leader>g :TagbarToggle<CR>
-nmap <silent> <leader>G :TagbarOpenAutoClose<CR>
+nmap <silent> <Leader>n :NERDTreeToggle<CR>
 
 " session
 let g:session_autoload = 'yes'
@@ -201,8 +201,6 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -211,50 +209,8 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 set t_Co=256
 set background=dark
 colorscheme tomorrow-night
-
-" Vim functions to run RSpec and Cucumber on the current file and optionally on
-" the spec/scenario under the cursor.
-
-function! RailsScriptIfExists(name)
-  " Bundle exec
-  if isdirectory(".bundle") || (exists("b:rails_root") && isdirectory(b:rails_root . "/.bundle"))
-    return "bundle exec " . a:name
-    " System Binary
-  else
-    return a:name
-  end
-endfunction
-
-function! RunSpec(args)
-  let spec = RailsScriptIfExists("rspec --drb")
-  let cmd = spec . " " . a:args . " -fn " . @%
-  execute ":! echo " . cmd . " && " . cmd
-endfunction
-
-function! RunCucumber(args)
-  let cucumber = RailsScriptIfExists("cucumber --drb")
-  let cmd = cucumber . " " . @% . a:args
-  execute ":! echo " . cmd . " && " . cmd
-endfunction
-
-function! RunTestFile(args)
-  if @% =~ "\.feature$"
-    call RunCucumber("" . a:args)
-  elseif @% =~ "\.rb$"
-    call RunSpec("" . a:args)
-  end
-endfunction
-
-function! RunTest(args)
-  if @% =~ "\.feature$"
-    call RunCucumber(":" . line('.') . a:args)
-  elseif @% =~ "\.rb$"
-    call RunSpec("-l " . line('.') . a:args)
-  end
-endfunction
-
-map <Leader>r :call RunTest("")<CR>
-map <Leader>t :call RunTestFile("")<CR>
+highlight NonText guibg=#060606
+highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
 autocmd FileType cucumber compiler cucumber | setl makeprg=cucumber\ -c\ \"%:p\"
 autocmd FileType ruby
@@ -266,3 +222,25 @@ autocmd FileType ruby
       \   compiler ruby | setl makeprg=ruby\ -wc\ \"%:p\" |
       \ endif
 autocmd User Bundler if &makeprg !~# 'bundle' | setl makeprg^=bundle\ exec\  | endif
+
+" Rspec.vim mappings
+let g:rspec_command = "Dispatch zeus rspec {spec}"
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+
+  " make :Ack use ag behind
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+endif

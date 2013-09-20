@@ -1,8 +1,6 @@
 [user]
   name = Danilo Sousa
   email = code@danilosousa.net
-[branch]
-  autosetuprebase = always
 [push]
   default = current
 [color]
@@ -26,12 +24,15 @@
   untracked = cyan
 [core]
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	excludesfile = ~/.gitignore
 [alias]
   st = status
   ci = commit
   cav = commit -av
+  amend = commit --amend
   br = branch -v
   co = checkout
+  pull = pull --ff-only
   pr = pull --rebase
   po = push origin
   df = diff
@@ -40,20 +41,6 @@
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
   ls = ls-files
-  # Show files ignored by git:
-  ign = ls-files -o -i --exclude-standard
-[diff]
-	tool = Kaleidoscope
-[difftool]
-	prompt = false
+  ign = ls-files -o -i --exclude-standard # Show files ignored by git:
 [credential]
   helper = osxkeychain
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
-[mergetool]
-	prompt = false
-[merge]
-	tool = Kaleidoscope
