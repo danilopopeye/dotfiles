@@ -100,4 +100,18 @@ hitch() {
 }
 alias unhitch='hitch -u'
 
+gifify() {
+  if [[ -n "$1" ]]; then
+    if [[ $2 == '--ugly' ]]; then
+      ffmpeg -i $1 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 > $1.gif
+    else
+      ffmpeg -i $1 -r 10 -vcodec png out-static-%05d.png
+      time convert -verbose +dither -layers Optimize out-static*.png  GIF:- | gifsicle --colors 128 --delay=5 --loop --optimize=3 --multifile - > $1.gif
+      rm out-static*.png
+    fi
+  else
+    echo "proper usage: gifify --ugly <input_movie.mov>. You DO need to include extension."
+  fi
+}
+
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
