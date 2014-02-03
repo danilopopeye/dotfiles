@@ -87,6 +87,9 @@ set shell=/usr/local/bin/zsh
 " dont continue comments when pushing o/O
 set formatoptions-=o
 
+" Resize splits when the window is resized
+au VimResized * exe "normal! \<c-w>="
+
 " mark unnecessary whitespace
 autocmd BufRead * highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufRead * match BadWhitespace /^\t\+/
