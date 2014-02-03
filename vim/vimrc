@@ -25,6 +25,7 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-dispatch'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'godlygeek/tabular'
 
 " Bundle 'jelera/vim-javascript-syntax'
@@ -205,6 +206,9 @@ let g:neocomplcache_enable_underbar_completion = 1
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" indent-guides
+let g:indent_guides_guide_size = 2
 
 " color and theme
 set t_Co=256
