@@ -32,7 +32,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew gem git git-extras git-flow-avh heroku node npm powify rails rake redis-cli rvm safe-paste tmux tmuxinator vagrant zeus)
+plugins=(brew gem git git-extras git-flow-avh heroku node npm powify rbenv rails rake redis-cli safe-paste tmux tmuxinator vagrant docker zeus)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -113,5 +113,3 @@ gifify() {
     echo "proper usage: gifify --ugly <input_movie.mov>. You DO need to include extension."
   fi
 }
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

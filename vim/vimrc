@@ -42,7 +42,7 @@ Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-rvm'
+Bundle 'tpope/vim-rbenv'
 
 filetype plugin indent on
 filetype plugin on
