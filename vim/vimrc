@@ -18,14 +18,12 @@ Bundle 'tsaleh/vim-matchit'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'thoughtbot/vim-rspec'
-
-" Bundle 'terryma/vim-multiple-cursors'
 Bundle 'Shougo/neocomplcache'
-" Bundle 'Shougo/neosnippet'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-dispatch'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'godlygeek/tabular'
 
 " Bundle 'jelera/vim-javascript-syntax'
@@ -35,10 +33,12 @@ Bundle 'godlygeek/tabular'
 " Bundle 'nono/vim-handlebars'
 " Bundle 'chrisbra/csv.vim'
 
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-repeat'
@@ -56,6 +56,7 @@ set showmode
 set showmatch
 set hidden
 set number
+set laststatus=2
 set smartindent
 set autoindent
 set tabstop=2
@@ -184,11 +185,7 @@ nmap <silent> <Leader>gdv :Gvdiff<CR>
 nmap <silent> <Leader>gds :Gsdiff<CR>
 nmap <Leader>gg :Ggrep
 
-" vim-gitgutter
-let g:gitgutter_eager=0
-
 " powerline
-set laststatus=2
 let g:Powerline_symbols = 'fancy'
 
 " ctrlp
@@ -225,6 +222,7 @@ let g:indent_guides_guide_size = 2
 set t_Co=256
 set background=dark
 colorscheme tomorrow-night
+
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
@@ -240,7 +238,7 @@ autocmd FileType ruby
 autocmd User Bundler if &makeprg !~# 'bundle' | setl makeprg^=bundle\ exec\  | endif
 
 " Rspec.vim mappings
-let g:rspec_command = "Dispatch zeus rspec {spec}"
+let g:rspec_command = "Dispatch rspec -f d {spec}"
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
