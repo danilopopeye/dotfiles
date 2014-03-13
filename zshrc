@@ -5,7 +5,7 @@ ZSH=$HOME/.dotfiles/oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -35,6 +35,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(brew gem git git-extras git-flow-avh heroku node npm powify rbenv rails rake redis-cli safe-paste tmux tmuxinator vagrant docker zeus)
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.dotfiles/promptline.sh
 
 # Customize to your needs...
 

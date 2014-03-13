@@ -27,6 +27,7 @@ Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'godlygeek/tabular'
 Bundle 'editorconfig/editorconfig-vim'
 
+Bundle 'edkolev/promptline.vim'
 Bundle 'edkolev/tmuxline.vim'
 
 " Bundle 'jelera/vim-javascript-syntax'
@@ -278,4 +279,17 @@ let g:tmuxline_preset = {
   \'y'       : ['%A', '%R'],
   \'z'       : '#H',
   \'options' : {'status-justify' : 'left'}
+\}
+
+" powerline
+let g:promptline_theme = 'airline'
+" TODO: verify if the ruby-version is in the repository
+let g:promptline_preset = {
+  \'a' : [ '%#', promptline#slices#user() ],
+  \'b' : [ promptline#slices#cwd() ],
+  \'c' : [ promptline#slices#jobs() ],
+  \'x' : [ promptline#slices#battery() ],
+  \'y' : [ promptline#slices#git_status(), promptline#slices#vcs_branch() ],
+  \'z' : [ '$([[ -s .ruby-version ]] && rbenv version-name)' ],
+  \'warn' : [ promptline#slices#last_exit_code() ]
 \}
