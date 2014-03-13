@@ -27,6 +27,8 @@ Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'godlygeek/tabular'
 Bundle 'editorconfig/editorconfig-vim'
 
+Bundle 'edkolev/tmuxline.vim'
+
 " Bundle 'jelera/vim-javascript-syntax'
 " Bundle 'kchmck/vim-coffee-script'
 " Bundle 'digitaltoad/vim-jade'
@@ -266,3 +268,14 @@ if exists(":Tabularize")
   nmap <Leader>: :Tabularize /:\zs<CR>
   vmap <Leader>: :Tabularize /:\zs<CR>
 endif
+
+" tmuxline
+let g:tmuxline_theme = 'airline'
+let g:tmuxline_preset = {
+  \'a'       : '#S',
+  \'win'     : ['#I', '#W'],
+  \'cwin'    : ['#I', '#W'],
+  \'y'       : ['%A', '%R'],
+  \'z'       : '#H',
+  \'options' : {'status-justify' : 'left'}
+\}
