@@ -58,6 +58,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export EDITOR='vim'
 export SHELL='/usr/local/bin/zsh'
+export DOCKER_HOST='localhost'
 
 # Bash aliases
 alias l="ls -hG"
@@ -102,11 +103,12 @@ alias unhitch='hitch -u'
 
 gifify() {
   if [[ -n "$1" ]]; then
+    GIF="${1%.*}.gif"
     if [[ $2 == '--ugly' ]]; then
-      ffmpeg -i $1 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 > $1.gif
+      ffmpeg -i $1 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 > $GIF
     else
       ffmpeg -i $1 -r 10 -vcodec png out-static-%05d.png
-      time convert -verbose +dither -layers Optimize out-static*.png  GIF:- | gifsicle --colors 128 --delay=5 --loop --optimize=3 --multifile - > $1.gif
+      time convert -verbose +dither -layers Optimize out-static*.png  GIF:- | gifsicle --colors 128 --delay=5 --loop --optimize=3 --multifile - > $GIF
       rm out-static*.png
     fi
   else
