@@ -25,6 +25,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'godlygeek/tabular'
+Bundle 'editorconfig/editorconfig-vim'
 
 " Bundle 'jelera/vim-javascript-syntax'
 " Bundle 'kchmck/vim-coffee-script'
@@ -54,8 +55,10 @@ syntax on
 " options
 set showmode
 set showmatch
+set matchtime=0
 set hidden
 set number
+set relativenumber
 set laststatus=2
 set smartindent
 set autoindent
@@ -110,7 +113,7 @@ autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
 " au FileType javascript call JavaScriptFold()
 
 " foldmethod as indent 'cause syntax is slow
-autocmd FileType html,css,eruby,ruby,yaml setl foldmethod=indent
+autocmd FileType html,scss,css,eruby,ruby,yaml setl foldmethod=indent
 
 " Open new windows on the bottom and right instead of the top and left.
 set splitbelow
@@ -128,12 +131,15 @@ au FocusLost * :wa
 " make ; act like a :
 " nnoremap ; :
 
+" yank from the cursor to the end of the line, to be consistent with C and D.
+nnoremap Y y$
+
 " don't mess with wrap movement
 nnoremap j gj
 nnoremap k gk
 
-" clear search highlighting
-nnoremap <silent> <leader>/ :nohlsearch<CR>
+" use Esc to hide search highlights
+nnoremap <silent> <Esc> :nohlsearch<CR>
 
 " pastetoggle has timeout issue with powerline
 map <F2> :set paste!<CR>
