@@ -11,7 +11,7 @@ Bundle 'gmarik/vundle'
 " Vundle bundles
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
 Bundle 'docunext/closetag.vim'
 Bundle 'aelesbao/vim-session'
 Bundle 'tsaleh/vim-matchit'
@@ -191,8 +191,9 @@ nmap <silent> <Leader>gdv :Gvdiff<CR>
 nmap <silent> <Leader>gds :Gsdiff<CR>
 nmap <Leader>gg :Ggrep
 
-" powerline
-let g:Powerline_symbols = 'fancy'
+" Use powerline fonts on airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " ctrlp
 nmap <silent> <leader>b :CtrlPBuffer<CR>
