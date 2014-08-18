@@ -9,34 +9,44 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Vundle bundles
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
 Bundle 'bling/vim-airline'
 Bundle 'docunext/closetag.vim'
-Bundle 'aelesbao/vim-session'
-Bundle 'tsaleh/vim-matchit'
+Bundle 'matchit.zip'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
-Bundle 'thoughtbot/vim-rspec'
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-vinegar'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'godlygeek/tabular'
+Bundle 'ntpeters/vim-better-whitespace'
 Bundle 'editorconfig/editorconfig-vim'
+Bundle 'godlygeek/tabular'
+Bundle 'sjl/gundo.vim'
 
+" tmux things
 Bundle 'edkolev/promptline.vim'
 Bundle 'edkolev/tmuxline.vim'
 
-" Bundle 'jelera/vim-javascript-syntax'
+" Dash.app
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
+
 " Bundle 'kchmck/vim-coffee-script'
 " Bundle 'digitaltoad/vim-jade'
 " Bundle 'groenewege/vim-less'
 " Bundle 'nono/vim-handlebars'
 " Bundle 'chrisbra/csv.vim'
 
+" languages and stuff
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'pangloss/vim-javascript'
+Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'Keithbsmiley/rspec.vim'
+Bundle 'thoughtbot/vim-rspec'
+Bundle 'ngmy/vim-rubocop'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-cucumber'
@@ -49,6 +59,19 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rbenv'
+
+" new kids on the block
+Bundle 'buztard/vim-nomad'
+Bundle 't9md/vim-choosewin'
+Bundle 'tpope/vim-speeddating'
+Bundle 'kshenoy/vim-signature'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'ZoomWin'
+
+" the ones to try
+Bundle 'ck3g/vim-change-hash-syntax'
+Bundle 'othree/javascript-libraries-syntax.vim'
+Bundle 'myusuf3/numbers.vim'
 
 filetype plugin indent on
 filetype plugin on
@@ -68,6 +91,7 @@ set autoindent
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+set textwidth=99
 set expandtab
 set ignorecase
 set smartcase
@@ -78,7 +102,7 @@ set noerrorbells
 set nobackup
 set noswapfile
 set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
-set list
+set nolist
 set showbreak=↪
 set backspace=indent,eol,start
 set scrolloff=3
@@ -87,7 +111,7 @@ set cursorline
 set foldenable
 set foldmethod=syntax
 set nofoldenable
-set wildignore+=.DS_Store,node_modules,*/tmp/*,*.so,*.swp
+set wildignore+=.DS_Store,node_modules,*/tmp/*,*.so,*.swp,coverage
 set wildmenu
 set wildmode=list:longest
 set shell=/usr/local/bin/zsh
@@ -98,25 +122,23 @@ set formatoptions-=o
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
-" mark unnecessary whitespace
-autocmd BufRead * highlight BadWhitespace ctermbg=red guibg=red
-autocmd BufRead * match BadWhitespace /^\t\+/
-autocmd BufRead * match BadWhitespace /\s\+$/
+" color and theme
+set t_Co=256
+set background=dark
+colorscheme tomorrow-night
 
 " html js css complete ruby xml
 autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType ruby setl omnifunc=rubycomplete#Complete
-autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
-autocmd FileType coffee setl foldmethod=indent|setl foldlevel=1
 
 " javascript
 autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
-" au FileType javascript call JavaScriptFold()
+au FileType javascript call JavaScriptFold()
 
 " foldmethod as indent 'cause syntax is slow
-autocmd FileType html,scss,css,eruby,ruby,yaml setl foldmethod=indent
+" autocmd FileType html,scss,css,eruby,ruby,yaml setl foldmethod=indent
 
 " Open new windows on the bottom and right instead of the top and left.
 set splitbelow
@@ -131,9 +153,6 @@ let mapleader = ","
 " save on lost focus
 au FocusLost * :wa
 
-" make ; act like a :
-" nnoremap ; :
-
 " yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
 
@@ -143,9 +162,6 @@ nnoremap k gk
 
 " use Esc to hide search highlights
 nnoremap <silent> <Esc> :nohlsearch<CR>
-
-" pastetoggle has timeout issue with powerline
-map <F2> :set paste!<CR>
 
 " dont use arrow keys :)
 map <up> <nop>
@@ -176,8 +192,22 @@ nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 nnoremap <silent> g# g#zz
 
+" rainbow parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
 " clear fugitive buffers on close
 autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" Gundo
+nnoremap <Leader>u :GundoToggle<CR>
+let g:gundo_preview_bottom = 1
+let g:gundo_help = 0
+
+" Dash.app
+nmap <silent> <leader>d <Plug>DashSearch
 
 " fugitive maps
 nmap <silent> <Leader>gs  :Gstatus<CR>
@@ -192,7 +222,7 @@ nmap <silent> <Leader>grm :Gremove<CR>
 nmap <silent> <Leader>gd  :Gdiff<CR>
 nmap <silent> <Leader>gdv :Gvdiff<CR>
 nmap <silent> <Leader>gds :Gsdiff<CR>
-nmap <Leader>gg :Ggrep
+nmap <Leader>gg :Ggrep 
 
 " Use powerline fonts on airline
 let g:airline_powerline_fonts = 1
@@ -202,18 +232,11 @@ let g:airline#extensions#tabline#enabled = 1
 nmap <silent> <leader>b :CtrlPBuffer<CR>
 nmap <silent> <leader>m :CtrlPMRU<CR>
 let g:ctrlp_working_path_mode = ''
-let g:ctrlp_clear_cache_on_exit=0
+let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_max_height = 15
 
 " syntastic
 let g:syntastic_coffee_lint_options='max_line_length=0'
-
-" NERDTree
-nmap <silent> <Leader>n :NERDTreeToggle<CR>
-
-" session
-let g:session_autoload = 'yes'
-let g:session_autosave = 'yes'
 
 " neocomplete
 let g:acp_enableAtStartup = 0
@@ -234,10 +257,9 @@ inoremap <expr><C-e> neocomplete#cancel_popup()
 " indent-guides
 let g:indent_guides_guide_size = 2
 
-" color and theme
-set t_Co=256
-set background=dark
-colorscheme tomorrow-night
+" gitgutter
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
 
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
@@ -254,21 +276,19 @@ autocmd FileType ruby
 autocmd User Bundler if &makeprg !~# 'bundle' | setl makeprg^=bundle\ exec\  | endif
 
 " Rspec.vim mappings
-let g:rspec_command = "Dispatch rspec -f d {spec}"
+let g:rspec_command = "Dispatch bundle exec rspec -f d {spec}"
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
 " Tabular
-if exists(":Tabularize")
-  nmap <Leader>= :Tabularize /=<CR>
-  vmap <Leader>= :Tabularize /=<CR>
-  nmap <Leader>| :Tabularize /|<CR>
-  vmap <Leader>| :Tabularize /|<CR>
-  nmap <Leader>: :Tabularize /:\zs<CR>
-  vmap <Leader>: :Tabularize /:\zs<CR>
-endif
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a\ :Tabularize /\|<CR>
+vmap <Leader>a\ :Tabularize /\|<CR>
+nmap <Leader>a; :Tabularize /:<CR>
+vmap <Leader>a; :Tabularize /:<CR>
 
 " tmuxline
 let g:tmuxline_theme = 'airline'
@@ -285,11 +305,11 @@ let g:tmuxline_preset = {
 let g:promptline_theme = 'airline'
 " TODO: verify if the ruby-version is in the repository
 let g:promptline_preset = {
-  \'a' : [ '%#', promptline#slices#user() ],
-  \'b' : [ promptline#slices#cwd() ],
-  \'c' : [ promptline#slices#jobs() ],
-  \'x' : [ promptline#slices#battery() ],
-  \'y' : [ promptline#slices#git_status(), promptline#slices#vcs_branch() ],
-  \'z' : [ '$([[ -s .ruby-version ]] && rbenv version-name)' ],
+  \'a'    : [ '%#', promptline#slices#user() ],
+  \'b'    : [ promptline#slices#cwd() ],
+  \'c'    : [ promptline#slices#jobs() ],
+  \'x'    : [ promptline#slices#battery() ],
+  \'y'    : [ promptline#slices#git_status(), promptline#slices#vcs_branch() ],
+  \'z'    : [ '$([[ -s .ruby-version ]] && rbenv version-name)' ],
   \'warn' : [ promptline#slices#last_exit_code() ]
 \}

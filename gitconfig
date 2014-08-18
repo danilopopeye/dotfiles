@@ -24,10 +24,11 @@
   untracked = cyan
 [core]
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
 [alias]
   st = status
   ci = commit
+  cv = commit -v
   cav = commit -av
   amend = commit --amend
   br = branch -v
@@ -45,5 +46,16 @@
 [credential]
   helper = osxkeychain
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
+[merge]
+  tool = vimdiff
+  tool = prompt
+[help]
+  autocorrect = 1
+[github]
+  user = danilopopeye
+[ghi]
+  token = !security find-internet-password -a danilopopeye -s github.com -l 'ghi token' -w
+[ghi "highlight"]
+  style = default
