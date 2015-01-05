@@ -46,11 +46,11 @@
 [credential]
   helper = osxkeychain
 [filter "media"]
-  clean = git-media-clean %f
-  smudge = git-media-smudge %f
+  clean = git media clean %f
+  smudge = git media smudge %f
+  required = true
 [merge]
   tool = vimdiff
-  tool = prompt
 [help]
   autocorrect = 1
 [github]

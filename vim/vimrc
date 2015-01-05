@@ -72,6 +72,7 @@ Bundle 'ZoomWin'
 Bundle 'ck3g/vim-change-hash-syntax'
 Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'myusuf3/numbers.vim'
+Bundle 'plasticboy/vim-markdown'
 
 filetype plugin indent on
 filetype plugin on
@@ -176,6 +177,7 @@ set t_kr=OC
 set t_kl=OD
 
 " tab navigation
+set t_kB=[Z
 nnoremap <Tab> :tabnext<CR>
 nnoremap <S-Tab> :tabprevious<CR>
 
@@ -222,7 +224,7 @@ nmap <silent> <Leader>grm :Gremove<CR>
 nmap <silent> <Leader>gd  :Gdiff<CR>
 nmap <silent> <Leader>gdv :Gvdiff<CR>
 nmap <silent> <Leader>gds :Gsdiff<CR>
-nmap <Leader>gg :Ggrep 
+nmap <Leader>gg :Ggrep
 
 " Use powerline fonts on airline
 let g:airline_powerline_fonts = 1
@@ -308,7 +310,7 @@ let g:promptline_preset = {
   \'a'    : [ '%#', promptline#slices#user() ],
   \'b'    : [ promptline#slices#cwd() ],
   \'c'    : [ promptline#slices#jobs() ],
-  \'x'    : [ promptline#slices#battery() ],
+  \'x'    : [ promptline#slices#battery({ 'threshold': 35 }) ],
   \'y'    : [ promptline#slices#git_status(), promptline#slices#vcs_branch() ],
   \'z'    : [ '$([[ -s .ruby-version ]] && rbenv version-name)' ],
   \'warn' : [ promptline#slices#last_exit_code() ]
