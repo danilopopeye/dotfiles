@@ -1,6 +1,6 @@
 [user]
   name = Danilo Sousa
-  email = code@danilosousa.net
+  email = dsgoncalves@uoldiveo.com.br
 [push]
   default = current
 [color]
@@ -44,7 +44,7 @@
   ls = ls-files
   ign = ls-files -o -i --exclude-standard # Show files ignored by git:
 [credential]
-  helper = osxkeychain
+  helper = cache 'timetout = 28800'
 [filter "media"]
   clean = git media clean %f
   smudge = git media smudge %f
@@ -55,7 +55,3 @@
   autocorrect = 1
 [github]
   user = danilopopeye
-[ghi]
-  token = !security find-internet-password -a danilopopeye -s github.com -l 'ghi token' -w
-[ghi "highlight"]
-  style = default
