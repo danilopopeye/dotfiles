@@ -32,7 +32,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew gem git git-extras heroku node npm powify rbenv rails redis-cli safe-paste tmux tmuxinator vagrant docker zeus)
+plugins=(gem git git-extras node npm rbenv rails redis-cli safe-paste tmux tmuxinator docker zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.dotfiles/promptline.sh
@@ -40,15 +40,15 @@ source $HOME/.dotfiles/promptline.sh
 # Customize to your needs...
 
 # export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
-PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
+# PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
+# PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
 
 # fpath=(/usr/local/share/zsh $fpath)
-fpath=(/usr/local/share/zsh-completions $fpath)
-fpath=(/usr/local/share/zsh/site-functions $fpath)
+# fpath=(/usr/local/share/zsh-completions $fpath)
+# fpath=(/usr/local/share/zsh/site-functions $fpath)
 
 # zsh highlight
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # tmuxinator
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
@@ -58,7 +58,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # alias vimdiff="/usr/local/bin/mvim -v mvimdiff"
 
 export EDITOR='vim'
-export SHELL='/usr/local/bin/zsh'
+export SHELL='/bin/zsh'
 export DOCKER_HOST='localhost'
 
 # Bash aliases
@@ -87,12 +87,6 @@ export HISTCONTROL=ignoredups
 
 # Make some commands not show up in history
 export HISTIGNORE="l:ll:la:ls:ls *:cd:cd ..:cd -:pwd;exit:date:* --help"
-
-# Toggle OS X hidden files
-alias hidden_files="defaults write com.apple.finder AppleShowAllFiles"
-
-# fix Open With menu
-alias fix_open_with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user && killall Finder'
 
 export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 

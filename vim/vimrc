@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/vundle/ 
 call vundle#rc()
 
 " let Vundle manage Vundle
@@ -9,12 +9,12 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Vundle bundles
-Bundle 'bling/vim-airline'
+Bundle 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Bundle 'docunext/closetag.vim'
 Bundle 'matchit.zip'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
-Bundle 'Shougo/neocomplete.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-commentary'
@@ -22,7 +22,6 @@ Bundle 'tpope/vim-vinegar'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'ntpeters/vim-better-whitespace'
-Bundle 'editorconfig/editorconfig-vim'
 Bundle 'godlygeek/tabular'
 Bundle 'sjl/gundo.vim'
 
@@ -115,7 +114,7 @@ set nofoldenable
 set wildignore+=.DS_Store,node_modules,*/tmp/*,*.so,*.swp,coverage
 set wildmenu
 set wildmode=list:longest
-set shell=/usr/local/bin/zsh
+set shell=/bin/zsh
 
 " dont continue comments when pushing o/O
 set formatoptions-=o
@@ -126,7 +125,7 @@ au VimResized * exe "normal! \<c-w>="
 " color and theme
 set t_Co=256
 set background=dark
-colorscheme tomorrow-night
+colorscheme Tomorrow-Night
 
 " html js css complete ruby xml
 autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
@@ -227,7 +226,7 @@ nmap <silent> <Leader>gds :Gsdiff<CR>
 nmap <Leader>gg :Ggrep
 
 " Use powerline fonts on airline
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#enabled = 1
 
 " ctrlp
@@ -241,20 +240,20 @@ let g:ctrlp_max_height = 15
 let g:syntastic_coffee_lint_options='max_line_length=0'
 
 " neocomplete
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 2
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" let g:acp_enableAtStartup = 0
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#sources#syntax#min_keyword_length = 2
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " neocomplete key-mappings
-inoremap <expr><C-g> neocomplete#undo_completion()
-inoremap <expr><C-l> neocomplete#complete_common_string()
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplete#close_popup()
-inoremap <expr><C-e> neocomplete#cancel_popup()
+" inoremap <expr><C-g> neocomplete#undo_completion()
+" inoremap <expr><C-l> neocomplete#complete_common_string()
+" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y> neocomplete#close_popup()
+" inoremap <expr><C-e> neocomplete#cancel_popup()
 
 " indent-guides
 let g:indent_guides_guide_size = 2
@@ -293,6 +292,7 @@ nmap <Leader>a; :Tabularize /:<CR>
 vmap <Leader>a; :Tabularize /:<CR>
 
 " tmuxline
+let g:tmuxline_powerline_separators = 0
 let g:tmuxline_theme = 'airline'
 let g:tmuxline_preset = {
   \'a'       : '#S',
@@ -304,14 +304,10 @@ let g:tmuxline_preset = {
 \}
 
 " powerline
+let g:promptline_powerline_symbols = 0
 let g:promptline_theme = 'airline'
-" TODO: verify if the ruby-version is in the repository
 let g:promptline_preset = {
-  \'a'    : [ '%#', promptline#slices#user() ],
-  \'b'    : [ promptline#slices#cwd() ],
-  \'c'    : [ promptline#slices#jobs() ],
-  \'x'    : [ promptline#slices#battery({ 'threshold': 35 }) ],
-  \'y'    : [ promptline#slices#git_status(), promptline#slices#vcs_branch() ],
-  \'z'    : [ '$([[ -s .ruby-version ]] && rbenv version-name)' ],
-  \'warn' : [ promptline#slices#last_exit_code() ]
+  \'a'    : [ promptline#slices#cwd({ 'dir_limit': 1 }) ],
+  \'b'    : [ promptline#slices#git_status(), promptline#slices#vcs_branch() ],
+  \'c'    : [ promptline#slices#jobs(), promptline#slices#last_exit_code() ]
 \}
