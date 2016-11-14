@@ -1,6 +1,6 @@
 [user]
   name = Danilo Sousa
-  email = dsgoncalves@uoldiveo.com.br
+  email = dsgoncalves@uoldiveo.com
 [push]
   default = current
 [color]
@@ -36,15 +36,17 @@
   pull = pull --ff-only
   pr = pull --rebase
   po = push origin
-  df = diff
-  dc = diff --cached
+  df = diff --word-diff=color --unified=1
+  dc = diff --cached --word-diff=color --unified=1
   dt = difftool
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
   ls = ls-files
   ign = ls-files -o -i --exclude-standard # Show files ignored by git:
+  cleanup = !git branch --merged | grep -v master | xargs -n 1 git branch -d
+  undo = reset HEAD^
 [credential]
-  helper = cache 'timetout = 28800'
+	helper = cache --timeout=28800
 [filter "media"]
   clean = git media clean %f
   smudge = git media smudge %f

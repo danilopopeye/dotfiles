@@ -1,16 +1,15 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/ 
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required!
+" let Vundle manage Vundle required!
 Bundle 'gmarik/vundle'
 
 " Vundle bundles
 Bundle 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Bundle 'vim-airline/vim-airline-themes'
 Bundle 'docunext/closetag.vim'
 Bundle 'matchit.zip'
 Bundle 'kien/ctrlp.vim'
@@ -19,19 +18,19 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-vinegar'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'nathanaelkane/vim-indent-guides'
+" Bundle 'airblade/vim-gitgutter'
+" Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'ntpeters/vim-better-whitespace'
-Bundle 'godlygeek/tabular'
-Bundle 'sjl/gundo.vim'
+" Bundle 'godlygeek/tabular'
+" Bundle 'sjl/gundo.vim'
 
 " tmux things
 Bundle 'edkolev/promptline.vim'
 Bundle 'edkolev/tmuxline.vim'
 
 " Dash.app
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
+" Bundle 'rizzatti/funcoo.vim'
+" Bundle 'rizzatti/dash.vim'
 
 " Bundle 'kchmck/vim-coffee-script'
 " Bundle 'digitaltoad/vim-jade'
@@ -40,38 +39,41 @@ Bundle 'rizzatti/dash.vim'
 " Bundle 'chrisbra/csv.vim'
 
 " languages and stuff
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'pangloss/vim-javascript'
-Bundle 'ecomba/vim-ruby-refactoring'
+" Bundle 'jelera/vim-javascript-syntax'
+" Bundle 'pangloss/vim-javascript'
+" Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'Keithbsmiley/rspec.vim'
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'ngmy/vim-rubocop'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-cucumber'
+" Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-rbenv'
+" Bundle 'tpope/vim-rails'
+" Bundle 'tpope/vim-haml'
+" Bundle 'tpope/vim-rbenv'
+Bundle 'tpope/vim-obsession'
+Bundle 'dhruvasagar/vim-prosession'
 
 " new kids on the block
-Bundle 'buztard/vim-nomad'
-Bundle 't9md/vim-choosewin'
+" Bundle 'buztard/vim-nomad'
+" Bundle 't9md/vim-choosewin'
 Bundle 'tpope/vim-speeddating'
-Bundle 'kshenoy/vim-signature'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'ZoomWin'
+" Bundle 'kshenoy/vim-signature'
+" Bundle 'kien/rainbow_parentheses.vim'
+" Bundle 'ZoomWin'
 
 " the ones to try
-Bundle 'ck3g/vim-change-hash-syntax'
-Bundle 'othree/javascript-libraries-syntax.vim'
+" Bundle 'ck3g/vim-change-hash-syntax'
+" Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'myusuf3/numbers.vim'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'pearofducks/ansible-vim'
 
 filetype plugin indent on
 filetype plugin on
@@ -79,6 +81,7 @@ filetype plugin on
 syntax on
 
 " options
+set noesckeys " disable arrow keys
 set showmode
 set showmatch
 set matchtime=0
@@ -111,7 +114,7 @@ set cursorline
 set foldenable
 set foldmethod=syntax
 set nofoldenable
-set wildignore+=.DS_Store,node_modules,*/tmp/*,*.so,*.swp,coverage
+set wildignore+=.DS_Store,node_modules,*/tmp/*,*.so,*.swp,coverage,tests/roles/*
 set wildmenu
 set wildmode=list:longest
 set shell=/bin/zsh
@@ -164,10 +167,11 @@ nnoremap k gk
 nnoremap <silent> <Esc> :nohlsearch<CR>
 
 " dont use arrow keys :)
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+
 
 " don't fuck with arrow keys
 set t_ku=OA
@@ -194,13 +198,16 @@ nnoremap <silent> g* g*zz
 nnoremap <silent> g# g#zz
 
 " rainbow parentheses
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+" au VimEnter * RainbowParenthesesToggle
+" au Syntax * RainbowParenthesesLoadRound
+" au Syntax * RainbowParenthesesLoadSquare
+" au Syntax * RainbowParenthesesLoadBraces
 
 " clear fugitive buffers on close
 autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" ProSession
+let g:prosession_per_branch = 1
 
 " Gundo
 nnoremap <Leader>u :GundoToggle<CR>
@@ -226,18 +233,18 @@ nmap <silent> <Leader>gds :Gsdiff<CR>
 nmap <Leader>gg :Ggrep
 
 " Use powerline fonts on airline
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+" include Obsession status
+let g:airline_section_z = airline#section#create(['%{ObsessionStatus(''$'', '''')}', 'windowswap', '%3p%% ', 'linenr', ':%3v '])
 
 " ctrlp
 nmap <silent> <leader>b :CtrlPBuffer<CR>
 nmap <silent> <leader>m :CtrlPMRU<CR>
-let g:ctrlp_working_path_mode = ''
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_max_height = 15
-
-" syntastic
-let g:syntastic_coffee_lint_options='max_line_length=0'
+let g:ctrlp_user_command = 'ack %s --nocolor -f --ignore-dir=tests/roles'
 
 " neocomplete
 " let g:acp_enableAtStartup = 0
@@ -256,11 +263,11 @@ let g:syntastic_coffee_lint_options='max_line_length=0'
 " inoremap <expr><C-e> neocomplete#cancel_popup()
 
 " indent-guides
-let g:indent_guides_guide_size = 2
+" let g:indent_guides_guide_size = 2
 
 " gitgutter
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
+" let g:gitgutter_realtime = 0
+" let g:gitgutter_eager = 0
 
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
@@ -292,19 +299,20 @@ nmap <Leader>a; :Tabularize /:<CR>
 vmap <Leader>a; :Tabularize /:<CR>
 
 " tmuxline
-let g:tmuxline_powerline_separators = 0
+let g:tmuxline_powerline_separators = 1
 let g:tmuxline_theme = 'airline'
 let g:tmuxline_preset = {
   \'a'       : '#S',
   \'win'     : ['#I', '#W'],
   \'cwin'    : ['#I', '#W'],
+  \"x"       : '#(tmux show-window-options | grep "synchronize-panes on">/dev/null && echo "Sync")',
   \'y'       : ['%A', '%R'],
   \'z'       : '#H',
   \'options' : {'status-justify' : 'left'}
 \}
 
-" powerline
-let g:promptline_powerline_symbols = 0
+" promptline
+let g:promptline_powerline_symbols = 1
 let g:promptline_theme = 'airline'
 let g:promptline_preset = {
   \'a'    : [ promptline#slices#cwd({ 'dir_limit': 1 }) ],

@@ -17,6 +17,7 @@
 --ignore-dir=spec/cassettes
 --ignore-dir=public
 --ignore-dir=bin
+--ignore-dir=tests/roles
 
 --type-add=html=.html,.html.erb,.html.slim,.html.haml,.mustache,.jst,.ejs
 --type-set=sh=.env,.aliases,.plugin,.completion,.theme,.compdef,.zsh,.sh

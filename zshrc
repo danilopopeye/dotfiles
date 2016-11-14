@@ -32,14 +32,14 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gem git git-extras node npm rbenv rails redis-cli safe-paste tmux tmuxinator docker zsh-syntax-highlighting)
+plugins=(gem git git-extras node npm rbenv rails redis-cli safe-paste ssh-agent tmux tmuxinator docker zsh-syntax-highlighting pyenv)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.dotfiles/promptline.sh
 
 # Customize to your needs...
 
-# export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 # PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
 # PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
 
@@ -59,16 +59,17 @@ source $HOME/.dotfiles/promptline.sh
 
 export EDITOR='vim'
 export SHELL='/bin/zsh'
-export DOCKER_HOST='localhost'
+export DOCKER_HOST='tcp://127.0.0.1:2375'
 
 # Bash aliases
 alias l="ls -hG"
 alias ll="ls -lhG"
 alias la="ls -alhG"
-alias psg="ps aux | grep"
+alias psg="ps aux | grep -v grep | grep "
 alias k9="kill -9"
 alias json='python -mjson.tool'
 # alias tmux="TERM=screen-256color-bce tmux"
+alias clbin="curl -F 'clbin=<-' https://clbin.com"
 
 # Ruby and Rails aliases
 alias be="bundle exec"
