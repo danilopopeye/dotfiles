@@ -1,113 +1,80 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.dotfiles/oh-my-zsh
+# Check if zplug is installed
+if [[ ! -d ~/.zplug ]]; then
+  git clone https://github.com/zplug/zplug ~/.zplug
+  source ~/.zplug/init.zsh && zplug update --self
+fi
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="agnoster"
+source ~/.zplug/init.zsh
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+zplug "junegunn/fzf", as:command, use:'bin/fzf-tmux'
+zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf, use:"*linux*amd64*"
+zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
+zplug "yudai/sshh", as:command
+zplug "b4b4r07/httpstat", as:command, use:'(*).sh', rename-to:'$1'
 
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
+zplug "plugins/colored-man-pages", from:oh-my-zsh
+zplug "plugins/httpie", from:oh-my-zsh
+zplug "plugins/ssh-agent", from:oh-my-zsh
+zplug "plugins/safe-paste", from:oh-my-zsh
 
-# Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+zplug "~/.dotfiles", from:local
+zplug "~/.dotfiles", from:local, as:command, use:"bin/*"
 
-# Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
+zplug "zsh-users/zsh-completions"
+# zplug "zsh-users/zsh-autosuggestions" # configure
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gem git git-extras node npm rbenv rails redis-cli safe-paste ssh-agent tmux tmuxinator docker zsh-syntax-highlighting pyenv)
-
-source $ZSH/oh-my-zsh.sh
-source $HOME/.dotfiles/promptline.sh
-
-# Customize to your needs...
-
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-# PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
-# PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
-
-# fpath=(/usr/local/share/zsh $fpath)
-# fpath=(/usr/local/share/zsh-completions $fpath)
-# fpath=(/usr/local/share/zsh/site-functions $fpath)
-
-# zsh highlight
-# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# tmuxinator
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
-
-# Use MacVim
-# alias vim="/usr/local/bin/mvim -v"
-# alias vimdiff="/usr/local/bin/mvim -v mvimdiff"
-
-export EDITOR='vim'
-export SHELL='/bin/zsh'
-export DOCKER_HOST='tcp://127.0.0.1:2375'
-
-# Bash aliases
-alias l="ls -hG"
-alias ll="ls -lhG"
-alias la="ls -alhG"
-alias psg="ps aux | grep -v grep | grep "
-alias k9="kill -9"
-alias json='python -mjson.tool'
-# alias tmux="TERM=screen-256color-bce tmux"
-alias clbin="curl -F 'clbin=<-' https://clbin.com"
-
-# Ruby and Rails aliases
-alias be="bundle exec"
-alias bi="bundle check || bundle install"
-alias biv="bundle install --verbose"
-alias bu="bundle update"
-alias bo="bundle open"
-
-# python webserver
-alias server="python -m SimpleHTTPServer"
-
-# Larger bash history (allow 32³ entries; default is 500)
-export HISTSIZE=32768
-export HISTFILESIZE=$HISTSIZE
-export HISTCONTROL=ignoredups
-
-# Make some commands not show up in history
-export HISTIGNORE="l:ll:la:ls:ls *:cd:cd ..:cd -:pwd;exit:date:* --help"
-
-export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
-
-hitch() {
-  command hitch "$@"
-  if [[ -s "$HOME/.hitch_export_authors" ]] ; then source "$HOME/.hitch_export_authors" ; fi
-}
-alias unhitch='hitch -u'
-
-gifify() {
-  if [[ -n "$1" ]]; then
-    GIF="${1%.*}.gif"
-    if [[ $2 == '--ugly' ]]; then
-      ffmpeg -i $1 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 > $GIF
-    else
-      ffmpeg -i $1 -r 10 -vcodec png out-static-%05d.png
-      time convert -verbose +dither -layers Optimize out-static*.png  GIF:- | gifsicle --colors 128 --delay=5 --loop --optimize=3 --multifile - > $GIF
-      rm out-static*.png
+# Install plugins if there are plugins that have not been installed
+if ! zplug check; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
     fi
-  else
-    echo "proper usage: gifify --ugly <input_movie.mov>. You DO need to include extension."
-  fi
-}
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load
+
+alias ll="ls -lh"
+# alias grep="rg"
+
+export EDITOR=nvim
+export LC_ALL="en_US.UTF-8"
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:./bin:~/.npm-global/bin
+export DOCKER_HOST="tcp://127.0.0.1:2376"
+
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="--height 40% --inline-info"
+export FZF_CTRL_R_OPTS='--exact'
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+export FZF_TMUX="$TMUX"
+
+# rbenv & pyenv
+export PATH="$HOME/.rbenv/bin:$HOME/.pyenv/bin:$PATH"
+eval "$(rbenv init -)"
+eval "$(pyenv init -)"
+
+setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
+setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
+
+# Enable ^, see https://github.com/robbyrussell/oh-my-zsh/issues/449#issuecomment-6973326
+setopt NO_NOMATCH
+setopt AUTOCD
+
+export CLICOLOR=1
+export BLOCK_SIZE=human-readable # https://www.gnu.org/software/coreutils/manual/html_node/Block-size.html
+export HISTSIZE=11000
+export SAVEHIST=10000
+export HISTFILE=~/.zsh_history
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
