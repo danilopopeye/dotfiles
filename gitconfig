@@ -3,6 +3,8 @@
   email = dsgoncalves@uoldiveo.com
 [push]
   default = current
+[fetch]
+  prune = true
 [color]
   ui = true
   branch = auto
@@ -46,7 +48,7 @@
   cleanup = !git branch --merged | grep -v master | xargs -n 1 git branch -d
   undo = reset HEAD^
 [credential]
-	helper = cache --timeout=28800
+  helper = cache --timeout=28800
 [filter "media"]
   clean = git media clean %f
   smudge = git media smudge %f
