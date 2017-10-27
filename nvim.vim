@@ -10,7 +10,7 @@ Plug 'docunext/closetag.vim'
 " Plug 'matchit.zip'
 Plug 'kien/ctrlp.vim'
 Plug 'mileszs/ack.vim'
-Plug 'scrooloose/syntastic'
+Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
@@ -21,12 +21,13 @@ Plug 'junegunn/fzf.vim'
 
 " languages and stuff
 Plug 'jelera/vim-javascript-syntax'
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 " Plug 'ecomba/vim-ruby-refactoring'
 Plug 'Keithbsmiley/rspec.vim'
-Plug 'thoughtbot/vim-rspec'
+" Plug 'thoughtbot/vim-rspec'
 Plug 'ngmy/vim-rubocop'
 Plug 'vim-ruby/vim-ruby'
+Plug 'janko-m/vim-test'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
@@ -38,7 +39,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rbenv'
-Plug 'rust-lang/rust.vim'
+" Plug 'rust-lang/rust.vim'
+Plug 'fatih/vim-go'
 
 " session management
 Plug 'tpope/vim-obsession'
@@ -47,12 +49,11 @@ Plug 'dhruvasagar/vim-prosession'
 " tmux things
 Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
-
-" Plugin outside ~/.vim/plugged with post-update hook
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 call plug#end() " Add plugins to &runtimepath
 
+set mouse+=a
 set number
 set relativenumber
 set laststatus=2
@@ -69,6 +70,7 @@ set foldenable
 set foldmethod=syntax
 set nofoldenable
 set wildignore+=.DS_Store,node_modules,*/tmp/*,*.so,*.swp,coverage,tests/roles/*
+set rtp+=~/.fzf
 
 " Enable persistent undo so that undo history persists across vim sessions
 set undofile
@@ -110,6 +112,19 @@ noremap <Right> <nop>
 nnoremap <Tab> :tabnext<CR>
 nnoremap <S-Tab> :tabprevious<CR>
 
+" syntastic
+let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" syntastic languages
+let g:syntastic_javascript_checkers = ['eslint']
+
 " ctrlp
 nmap <silent> <leader>f :FZF<CR>
 nmap <silent> <leader>b :CtrlPBuffer<CR>
@@ -126,6 +141,7 @@ let g:ctrlp_max_height = 15
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " fzf emulate ctrlp
+nmap <silent> <leader>f :FZF<CR>
 nmap <silent> <leader>p :GFiles<CR>
 nmap <silent> <leader>h :Helptags<CR>
 
@@ -171,9 +187,20 @@ nmap <silent> <Leader>gdv :Gvdiff<CR>
 nmap <silent> <Leader>gds :Gsdiff<CR>
 nmap <Leader>gg :Ggrep
 
+" vim-test helpers
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+
+" make test commands execute using dispatch.vim
+let test#strategy = 'dispatch'
+
 " Use powerline fonts on airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
 
 " tmuxline
 let g:tmuxline_powerline_separators = 1
