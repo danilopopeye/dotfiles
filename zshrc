@@ -1,76 +1,20 @@
-# Check if zplug is installed
-if [[ ! -d ~/.zplug ]]; then
-  git clone https://github.com/zplug/zplug ~/.zplug
-fi
+# zmodload zsh/zprof
+# setopt prompt_subst; zmodload zsh/datetime; PS4='+[$EPOCHREALTIME]%N:%i> '; set -x
 
-source ~/.zplug/init.zsh
+autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && compinit
 
-zplug "junegunn/fzf", as:command, use:'bin/fzf-tmux'
-zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
-zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
-zplug "yudai/sshh", as:command
-zplug "b4b4r07/httpstat", as:command, use:'(*).sh', rename-to:'$1'
-zplug "BurntSushi/ripgrep", from:gh-r, as:command, rename-to:rg
-zplug "BurntSushi/xsv", from:gh-r, as:command
+# zsh configs {{{
+bindkey -e
+export REPORTTIME=10	# display how long all tasks over 10 seconds take
+# }}}
 
-# XXX: depends of issue #298 to work
-# zplug "ogham/exa", from:gh-r, as:command, rename-to:exa
+ZSH_THEME="minimal"
+export LC_ALL=en_US.UTF-8
+source $ZSH/oh-my-zsh.sh
+plugins=(git docker terraform)
 
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "plugins/httpie", from:oh-my-zsh
-zplug "plugins/ssh-agent", from:oh-my-zsh
-zplug "plugins/safe-paste", from:oh-my-zsh
-
-zplug "~/.dotfiles", from:local
-zplug "~/.dotfiles", from:local, as:command, use:"bin/*"
-
-zplug "zsh-users/zsh-completions"
-# zplug "zsh-users/zsh-autosuggestions" # configure
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load
-
-# alias ll="ls -lh"
-alias ll="exa -bghHl --git"
-alias la="ll -a"
-alias vim=nvim
-
-# local AWS development helpers
-alias sns='dotenv aws --endpoint-url http://localhost:4100 sns'
-alias sqs='dotenv aws --endpoint-url http://localhost:4100 sqs'
-alias dynamodb='dotenv aws --endpoint-url http://localhost:8889 dynamodb'
-
-export EDITOR=nvim
-export LC_ALL="en_US.UTF-8"
-export PATH=$PATH:/bin:/usr/local/sbin:/usr/sbin:/usr/sbin:./bin:$HOME/.npm-global/bin:./node_modules/.bin
-export DOCKER_HOST="tcp://127.0.0.1:2376"
-
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob \!.git 2>/dev/null'
-export FZF_DEFAULT_OPTS="--height 40% --inline-info"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview 'head -50 {}'"
-export FZF_CTRL_R_OPTS='--exact'
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
-export FZF_TMUX="$TMUX"
-
-# rbenv & pyenv & nodenv
-eval "$(rbenv init -)"
-eval "$(pyenv init -)"
-eval "$(nodenv init -)"
-eval "$(goenv init -)"
-
-# rust toolkit
-export PATH=$PATH:~/.cargo/bin
-
+# zsh history {{{
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
@@ -82,6 +26,7 @@ setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
 setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
 setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 
 # Enable ^, see https://github.com/robbyrussell/oh-my-zsh/issues/449#issuecomment-6973326
 setopt NO_NOMATCH
@@ -90,13 +35,42 @@ setopt AUTOCD
 export WORDCHARS=''
 export CLICOLOR=1
 export BLOCK_SIZE=human-readable # https://www.gnu.org/software/coreutils/manual/html_node/Block-size.html
-export HISTSIZE=11000
-export SAVEHIST=10000
+export HISTSIZE=10000000
+export SAVEHIST=10000000
 export HISTFILE=~/.zsh_history
+# }}}
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /home/dsgoncalves/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/dsgoncalves/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /home/dsgoncalves/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/dsgoncalves/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# aliases {{{
+alias ll='exa -Flh --git'
+alias la='ll -a'
+alias lt='ll -T'
+alias vim="nvim"
+alias vi="nvim"
+alias k="kubectl"
+# }}}
+
+# Setup fzf {{{
+if [[ ! "$PATH" == *$HOMEBREW_PREFIX/opt/fzf/bin* ]]; then
+  export PATH="$HOMEBREW_PREFIX/opt/fzf/bin:$PATH"
+fi
+[[ $- == *i* ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh" 2> /dev/null
+source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
+# }}}
+
+# local AWS development helpers {{{
+alias sns='dotenv aws --endpoint-url http://localhost:4100 sns'
+alias sqs='dotenv aws --endpoint-url http://localhost:4100 sqs'
+alias dynamodb='dotenv aws --endpoint-url http://localhost:8889 dynamodb'
+# }}}
+
+# zprof
+#
+
+# vim:foldmethod=marker:foldlevel=0:nomodeline:
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /Users/lucas.souza/bin/consul consul
+complete -o nospace -C /Users/lucas.souza/bin/vault vault
+source <(kubectl completion zsh)
+
+alias java='~/Java/bin/java'
