@@ -66,3 +66,6 @@ source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'm:{a-zA-Z}={A-Za-z} l:|=* r:|=*'
+
+. $(brew --prefix asdf)/asdf.sh
