@@ -13,7 +13,7 @@ return {
   opts = {
     auto_install = true,
     ensure_installed = {
-      "bash", "csv", "dockerfile", "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore", "go", "gomod", "gosum",
+      "bash", "csv", "dockerfile", "git_config", "git_rebase", "gitattributes", "gitignore", "go", "gomod", "gosum",
       "gowork", "html", "javascript", "json", "lua", "markdown", "markdown_inline", "query", "sql", "ssh_config", "terraform", "toml",
       "vim", "vimdoc", "xml", "yaml",
     },
