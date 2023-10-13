@@ -14,12 +14,12 @@ return {
     auto_install = true,
     ensure_installed = {
       "bash", "csv", "dockerfile", "git_config", "git_rebase", "gitattributes", "gitignore", "go", "gomod", "gosum",
-      "gowork", "html", "javascript", "json", "lua", "markdown", "markdown_inline", "query", "sql", "ssh_config", "terraform", "toml",
-      "vim", "vimdoc", "xml", "yaml",
+      "gowork", "html", "javascript", "json", "lua", "markdown", "markdown_inline", "query", "sql", "ssh_config",
+      "terraform", "toml", "vim", "vimdoc", "xml", "yaml",
     },
-    highlight = { 
+    highlight = {
       enable = true,
-      disable = function(_, bufnr) return vim.b[bufnr].large_buf end, 
+      disable = function(_, bufnr) return vim.b[bufnr].large_buf end,
     },
     autotag = { enable = true },
     context_commentstring = { enable = true },
@@ -28,6 +28,8 @@ return {
   },
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
+
+    vim.opt.foldmethod = "expr"
+    vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
   end,
 }
-
