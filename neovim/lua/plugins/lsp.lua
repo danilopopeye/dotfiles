@@ -91,6 +91,7 @@ return {
       lsp_zero.on_attach(function(_, bufnr)
         -- see :help lsp-zero-keybindings to learn the available actions
         lsp_zero.default_keymaps({ buffer = bufnr })
+        lsp_zero.buffer_autoformat()
       end)
 
       -- mason
@@ -135,6 +136,18 @@ return {
       local cmp = require('cmp')
       local cmp_action = lsp_zero.cmp_action()
 
+      -- complete only from visible buffers
+      local cmp_buffer_opts = {
+        get_bufnrs = function()
+          local bufs = {}
+
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            bufs[vim.api.nvim_win_get_buf(win)] = true
+          end
+          return vim.tbl_keys(bufs)
+        end
+      }
+
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -146,7 +159,7 @@ return {
           { name = 'luasnip', max_item_count = 5 }, -- For luasnip users.
           { name = 'treesitter', max_item_count = 5, },
           { name = 'nvim_lsp' },
-          { name = 'buffer', keyword_length = 3, max_item_count = 3 }, -- Only complete words > 5 chars
+          { name = 'buffer', keyword_length = 3, max_item_count = 5, option = cmp_buffer_opts }, -- Only complete words > 3 chars
           { name = 'path', max_item_count = 10 },
           { name = 'emoji', max_item_count = 10 }, -- nvim-cmp source for emojis
         },
