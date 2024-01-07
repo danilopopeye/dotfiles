@@ -17,7 +17,7 @@ return {
 
   -- Work with several variants of a word at once
   -- Abbreviation + Substitution + Coercion
-  -- { 'tpope/vim-abolish'  },
+  { 'tpope/vim-abolish',    event = "VeryLazy" },
 
   -- Vim sugar for the UNIX shell commands that need it the most
   { 'tpope/vim-eunuch', event = { "VeryLazy" } },
