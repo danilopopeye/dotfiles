@@ -144,14 +144,16 @@ map('n', '<leader>b', '<cmd>Telescope buffers<cr>')
 map('n', '<leader>h', '<cmd>Telescope help_tags<cr>')
 
 -- telescope-terraform-doc.nvim
-map('n', '<leader>ott', ':Telescope terraform_doc<cr>')
-map('n', '<leader>otm', ':Telescope terraform_doc modules<cr>')
+-- map('n', '<leader>ott', ':Telescope terraform_doc<cr>')
+-- map('n', '<leader>otm', ':Telescope terraform_doc modules<cr>')
 -- }}}
 
 -- try these
 -- koenverburg/minimal-tabline.nvim
 -- dstein64/vim-startuptime
 -- catppuccin/nvim
+-- magidc/nvim-config -- DAP config seems nice
+-- https://github.com/ofirgall/cmp-lspkind-priority
 
 -- Disable built-in statusline in Quickfix window
 -- vim.g.qf_disable_statusline = 1

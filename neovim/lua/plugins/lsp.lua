@@ -62,7 +62,7 @@ return {
       { 'rafamadriz/friendly-snippets' },
       { 'saadparwaiz1/cmp_luasnip' },
     },
-    config =function ()
+    config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
     end
   },
@@ -94,6 +94,8 @@ return {
         lsp_zero.buffer_autoformat()
       end)
 
+      -- lsp_zero set sign icons
+
       -- mason
       require('mason').setup({})
       require('mason-lspconfig').setup({
@@ -103,7 +105,7 @@ return {
             local lua_opts = lsp_zero.nvim_lua_ls()
             lspconfig.lua_ls.setup(lua_opts)
           end,
-          gopls = function ()
+          gopls = function()
             lspconfig.gopls.setup({
               settings = {
                 symbolScope = "workspace",
@@ -151,23 +153,23 @@ return {
       cmp.setup({
         snippet = {
           expand = function(args)
-            require'luasnip'.lsp_expand(args.body)
+            require 'luasnip'.lsp_expand(args.body)
           end
         },
         sources = {
           { name = 'nvim_lsp_signature_help' },
-          { name = 'luasnip', max_item_count = 5 }, -- For luasnip users.
-          { name = 'treesitter', max_item_count = 5, },
+          { name = 'luasnip',                max_item_count = 5 }, -- For luasnip users.
+          { name = 'treesitter',             max_item_count = 5, },
           { name = 'nvim_lsp' },
-          { name = 'buffer', keyword_length = 3, max_item_count = 5, option = cmp_buffer_opts }, -- Only complete words > 3 chars
-          { name = 'path', max_item_count = 10 },
-          { name = 'emoji', max_item_count = 10 }, -- nvim-cmp source for emojis
+          { name = 'buffer',                 keyword_length = 3, max_item_count = 5, option = cmp_buffer_opts }, -- Only complete words > 3 chars
+          { name = 'path',                   max_item_count = 10 },
+          { name = 'emoji',                  max_item_count = 10 },                                              -- nvim-cmp source for emojis
         },
 
         formatting = {
           format = lspkind.cmp_format({
-            mode = 'symbol_text', -- show only symbol annotations
-            maxwidth = 70, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            mode = 'symbol_text',  -- show only symbol annotations
+            maxwidth = 70,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
             ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
             menu = ({
               lua = "",
@@ -180,7 +182,7 @@ return {
         },
 
         mapping = cmp.mapping.preset.insert({
-          -- Accept currently selected item. 
+          -- Accept currently selected item.
           -- Set `select` to `false` to only confirm explicitly selected items.
           ['<CR>'] = cmp.mapping.confirm({
             s = cmp.mapping.confirm({ select = true }),
