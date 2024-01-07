@@ -1,6 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
-  event = "VeryLazy",
+  lazy = false,
   dependencies = { 'arkav/lualine-lsp-progress' },
 
   opts = {

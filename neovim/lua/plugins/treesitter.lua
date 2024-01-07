@@ -7,7 +7,8 @@ return {
     "nvim-treesitter/nvim-treesitter-refactor",
   },
 
-  event = { "VeryLazy" },
+  -- event = { "VeryLazy" },
+  lazy = false,
   build = ":TSUpdate",
 
   opts = {
