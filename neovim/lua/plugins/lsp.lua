@@ -1,8 +1,12 @@
 return {
   {
+    'williamboman/mason.nvim',
+    lazy = false,
+    config = true,
+  },
+  {
     'williamboman/mason-lspconfig.nvim',
-    event = 'VeryLazy',
-    dependencies = { 'williamboman/mason.nvim' },
+    lazy = true,
     opts = {
       automatic_installation = true,
       ensure_installed = {
@@ -47,43 +51,15 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
+    cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      { 'onsails/lspkind.nvim' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
       { 'hrsh7th/cmp-nvim-lsp-signature-help' },
-    }
-  },
-  -- Snippets
-  {
-    'L3MON4D3/LuaSnip',
-    version = "v2.*",
-    dependencies = {
-      { 'rafamadriz/friendly-snippets' },
-      { 'saadparwaiz1/cmp_luasnip' },
+      { 'williamboman/mason-lspconfig.nvim' },
     },
     config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-    end
-  },
-  -- Autocompletion
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      { 'L3MON4D3/LuaSnip' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'hrsh7th/cmp-cmdline' },
-      { 'hrsh7th/cmp-emoji' },
-      { 'ray-x/cmp-treesitter' },
-    },
-  },
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
-    lazy = true,
-    config = false,
-    init = function(_)
       local lspconfig = require('lspconfig')
       local lsp_zero = require('lsp-zero')
       lsp_zero.extend_lspconfig()
@@ -93,8 +69,6 @@ return {
         lsp_zero.default_keymaps({ buffer = bufnr })
         lsp_zero.buffer_autoformat()
       end)
-
-      -- lsp_zero set sign icons
 
       -- mason
       require('mason').setup({})
@@ -132,6 +106,37 @@ return {
           end,
         },
       })
+    end
+  },
+  -- Snippets
+  {
+    'L3MON4D3/LuaSnip',
+    lazy = true,
+    version = "v2.*",
+    dependencies = {
+      { 'rafamadriz/friendly-snippets' },
+      { 'saadparwaiz1/cmp_luasnip' },
+    },
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end
+  },
+  -- Autocompletion
+  {
+    'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
+    dependencies = {
+      { 'L3MON4D3/LuaSnip' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'hrsh7th/cmp-cmdline' },
+      { 'hrsh7th/cmp-emoji' },
+      { 'ray-x/cmp-treesitter' },
+      { 'onsails/lspkind.nvim' },
+    },
+    config = function()
+      local lsp_zero = require('lsp-zero')
+      lsp_zero.extend_cmp()
 
       -- cmp
       local lspkind = require('lspkind')
@@ -252,6 +257,17 @@ return {
           { name = 'cmdline', keyword_length = 2 }
         })
       })
+    end
+  },
+  {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v3.x',
+    lazy = true,
+    config = false,
+    init = function()
+      -- Disable automatic setup, we are doing it manually
+      vim.g.lsp_zero_extend_cmp = 0
+      vim.g.lsp_zero_extend_lspconfig = 0
     end,
   },
 }
