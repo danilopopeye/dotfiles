@@ -260,6 +260,13 @@ return {
     end
   },
   {
+    'kosayoda/nvim-lightbulb',
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {
+      autocmd = { enabled = true }
+    },
+  },
+  {
     "aznhe21/actions-preview.nvim",
     event = "InsertEnter",
     keys = {
