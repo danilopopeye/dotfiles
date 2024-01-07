@@ -22,7 +22,6 @@ return {
       disable = function(_, bufnr) return vim.b[bufnr].large_buf end,
     },
     autotag = { enable = true },
-    context_commentstring = { enable = true },
     -- Indentation based on treesitter for the = operator. NOTE: This is an experimental feature.
     indent = { enable = true },
   },
