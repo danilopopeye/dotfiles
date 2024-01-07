@@ -260,6 +260,20 @@ return {
     end
   },
   {
+    "aznhe21/actions-preview.nvim",
+    event = "InsertEnter",
+    keys = {
+      {
+        "gf",
+        function()
+          require("actions-preview").code_actions()
+        end,
+        mode = { "n", "v", },
+        desc = "Preview code with LSP code actions applied",
+      },
+    },
+  },
+  {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
     lazy = true,
