@@ -3,6 +3,47 @@ return {
     'williamboman/mason-lspconfig.nvim',
     event = 'VeryLazy',
     dependencies = { 'williamboman/mason.nvim' },
+    opts = {
+      automatic_installation = true,
+      ensure_installed = {
+        "bashls", "dockerls", "golangci_lint_ls", "gopls", "html", "jsonls",
+        "lua_ls", "prosemd_lsp", "quick_lint_js", "spectral", "sqlls", "taplo",
+        "yamlls",
+
+        -- markdownlint
+        -- yamllint
+        -- eslint_d
+        -- yaml-language-server yamlls, yamlls
+        -- gopls
+        -- json-lsp jsonls, jsonls
+        -- vim-language-server vimls, vimls
+        -- tflint
+        -- shfmt
+        -- terraform-ls terraformls, terraformls
+        -- shellcheck
+        -- jq
+        -- hadolint
+        -- golangci-lint
+        -- dockerfile-language-server dockerls, dockerls
+        -- bash-language-server bashls, bashls
+        -- gofumpt
+        -- editorconfig-checker
+        -- eslint-lsp eslint, eslint
+        -- fixjson
+        -- gitlint
+        -- goimports
+        -- golangci-lint-langserver golangci_lint_ls, golangci_lint_ls
+        -- golines
+        -- html-lsp html, html
+        -- lua-language-server lua_ls, lua_ls
+        -- prosemd-lsp prosemd_lsp, prosemd_lsp
+        -- quick-lint-js quick_lint_js, quick_lint_js
+        -- spectral-language-server spectral, spectral
+        -- sqlls
+        -- taplo
+
+      },
+    },
   },
   {
     'neovim/nvim-lspconfig',
