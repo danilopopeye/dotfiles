@@ -164,8 +164,8 @@ return {
         sources = {
           { name = 'nvim_lsp_signature_help' },
           { name = 'luasnip',                max_item_count = 5 }, -- For luasnip users.
-          { name = 'treesitter',             max_item_count = 5, },
           { name = 'nvim_lsp' },
+          { name = 'treesitter',             max_item_count = 5, },
           { name = 'buffer',                 keyword_length = 3, max_item_count = 5, option = cmp_buffer_opts }, -- Only complete words > 3 chars
           { name = 'path',                   max_item_count = 10 },
           { name = 'emoji',                  max_item_count = 10 },                                              -- nvim-cmp source for emojis
