@@ -125,10 +125,6 @@ require("lazy").setup("plugins", {
   },
 })
 -- }}}
--- colorscheme {{{
-vim.opt.termguicolors = true
-vim.cmd.colorscheme "base16-tomorrow-night"
--- }}}
 -- map helper {{{
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true }

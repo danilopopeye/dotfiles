@@ -1,7 +1,4 @@
 return {
-  -- base16 colorscheme
-  { 'RRethy/nvim-base16' },
-
   -- A useful plugin that can comment out your code with keybindings
   -- { 'shoukoo/commentary.nvim' },
 
