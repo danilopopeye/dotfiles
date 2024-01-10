@@ -70,6 +70,13 @@ return {
         lsp_zero.buffer_autoformat()
       end)
 
+      lsp_zero.set_sign_icons({
+        error = '✘',
+        warn = '▲',
+        hint = '⚑',
+        info = '»'
+      })
+
       -- mason
       require('mason').setup({})
       require('mason-lspconfig').setup({
