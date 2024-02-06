@@ -17,7 +17,7 @@ return {
   },
   opts = {
     severity = "ERROR",          -- nil (ALL) or vim.diagnostic.severity.ERROR | WARN | INFO | HINT
-    auto_open = true,            -- automatically open the list when you have diagnostics
+    auto_open = false,           -- automatically open the list when you have diagnostics
     auto_close = true,           -- automatically close the list when you have no diagnostics
     use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
   },
