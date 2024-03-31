@@ -93,9 +93,17 @@ return {
                 gopls = {
                   gofumpt = true,
                   staticcheck = true,
+                  usePlaceholders = true,
+                  codelenses = {
+                    gc_details = true,
+                    generate = true,
+                    regenerate_cgo = true,
+                    tidy = true,
+                    upgrade_dependency = true,
+                    vendor = true,
+                  },
                   analyses = {
-                    fieldalignment = true,
-                    nilness = true,
+                    -- fieldalignment = true,
                     shadow = true,
                     unusedparams = true,
                     unusedvariable = true,
