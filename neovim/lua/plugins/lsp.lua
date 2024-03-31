@@ -283,6 +283,7 @@ return {
   },
   {
     "aznhe21/actions-preview.nvim",
+    lazy = false,
     event = "InsertEnter",
     keys = {
       {
@@ -294,6 +295,16 @@ return {
         desc = "Preview code with LSP code actions applied",
       },
     },
+    config = function()
+      require("actions-preview").setup {
+        diff = {
+          ctxlen = 3,
+        },
+        highlight_command = {
+          require("actions-preview.highlight").delta(),
+        },
+      }
+    end,
   },
   {
     'VonHeikemen/lsp-zero.nvim',
