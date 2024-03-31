@@ -10,6 +10,12 @@ return {
       component_separators = '|',
       section_separators = '',
     },
+    extensions = {
+      'lazy',
+      'mason',
+      'quickfix',
+      'trouble',
+    },
     sections = {
       lualine_c = {
         'filename',
