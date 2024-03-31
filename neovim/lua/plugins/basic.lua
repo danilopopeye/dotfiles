@@ -25,4 +25,13 @@ return {
       attach_to_untracked = false,
     },
   },
+
+  -- Neovim plugin for make golang development easiest
+  {
+    "olexsmir/gopher.nvim",
+    event = "VeryLazy",
+    requires = { -- dependencies
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
 }
