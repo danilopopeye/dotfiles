@@ -30,7 +30,7 @@ return {
   {
     "olexsmir/gopher.nvim",
     event = "VeryLazy",
-    requires = { -- dependencies
+    dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
   },

@@ -93,7 +93,7 @@ return {
                 gopls = {
                   gofumpt = true,
                   staticcheck = true,
-                  usePlaceholders = true,
+                  -- usePlaceholders = true,
                   codelenses = {
                     gc_details = true,
                     generate = true,
@@ -113,7 +113,7 @@ return {
                   hints = {
                     assignVariableTypes = true,
                     constantValues = true,
-                    -- parameterNames = true,
+                    parameterNames = true,
                   },
                 },
               },
@@ -139,7 +139,7 @@ return {
   -- Autocompletion
   {
     'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
+    event = { 'InsertEnter', 'CmdLineEnter' },
     dependencies = {
       { 'L3MON4D3/LuaSnip' },
       { 'hrsh7th/cmp-buffer' },

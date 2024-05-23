@@ -155,10 +155,15 @@ end
 -- koenverburg/minimal-tabline.nvim
 -- dstein64/vim-startuptime
 -- catppuccin/nvim
--- magidc/nvim-config -- DAP config seems nice
--- https://github.com/ofirgall/cmp-lspkind-priority
+-- ofirgall/cmp-lspkind-priority
+-- magidc/nvim-config       -- DAP config seems nice
+-- stevearc/dressing.nvim   -- Neovim plugin to improve the default vim.ui interfaces
+-- m-demare/hlargs.nvim     -- Highlight arguments' definitions and usages, using Treesitter
+-- sindrets/diffview.nvim   -- Single tabpage interface for easily cycling through diffs for all modified files for any git rev
+-- zeioth/garbage-day.nvim  -- Garbage collector that stops inactive LSP clients to free RAM
 
 -- Disable built-in statusline in Quickfix window
 -- vim.g.qf_disable_statusline = 1
 
 -- vim:fdm=marker:fdl=0
+--
