@@ -105,7 +105,9 @@ nnoremap <silent> g# g#zz
 " }}}
 ]])
 -- }}}
-
+-- mise {{{
+vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+-- }}}
 -- lazy.nvim {{{
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
