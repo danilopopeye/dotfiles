@@ -145,6 +145,11 @@ map('n', '<leader>h', '<cmd>Telescope help_tags<cr>')
 -- map('n', '<leader>ott', ':Telescope terraform_doc<cr>')
 -- map('n', '<leader>otm', ':Telescope terraform_doc modules<cr>')
 -- }}}
+-- disable default providers {{{
+for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
+  vim.g["loaded_" .. provider .. "_provider"] = 0
+end
+-- }}}
 
 -- try these
 -- koenverburg/minimal-tabline.nvim
