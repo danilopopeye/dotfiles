@@ -68,6 +68,12 @@ return {
         -- see :help lsp-zero-keybindings to learn the available actions
         lsp_zero.default_keymaps({ buffer = bufnr })
         lsp_zero.buffer_autoformat()
+
+        local opts = { buffer = bufnr, remap = false }
+        local float = { float = true }
+
+        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev(float) end, opts)
+        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next(float) end, opts)
       end)
 
       lsp_zero.set_sign_icons({
@@ -176,14 +182,15 @@ return {
             require 'luasnip'.lsp_expand(args.body)
           end
         },
+
         sources = {
           { name = 'nvim_lsp_signature_help' },
-          { name = 'luasnip',                max_item_count = 5 }, -- For luasnip users.
+          { name = 'luasnip',                max_item_count = 5 },
           { name = 'nvim_lsp' },
           { name = 'treesitter',             max_item_count = 5, },
-          { name = 'buffer',                 keyword_length = 3, max_item_count = 5, option = cmp_buffer_opts }, -- Only complete words > 3 chars
+          { name = 'buffer',                 keyword_length = 3, max_item_count = 5, option = cmp_buffer_opts },
           { name = 'path',                   max_item_count = 10 },
-          { name = 'emoji',                  max_item_count = 10 },                                              -- nvim-cmp source for emojis
+          { name = 'emoji',                  max_item_count = 10 },
         },
 
         formatting = {
