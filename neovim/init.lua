@@ -22,7 +22,8 @@ set softtabstop=2   " Number of spaces that a <Tab> counts for in editing operat
 set undofile
 
 " A comma separated list of options for Insert mode completion
-set completeopt=menu,menuone,noselect
+" set completeopt=menu,menuone,noselect
+set completeopt=menu,menuone,noinsert
 
 " folding
 " set foldenable
@@ -107,6 +108,9 @@ nnoremap <silent> g# g#zz
 -- }}}
 -- mise {{{
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+-- }}}
+-- codeium {{{
+vim.env.PATH = vim.env.HOME .. "/.local/share/nvim/codeium:" .. vim.env.PATH
 -- }}}
 -- lazy.nvim {{{
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

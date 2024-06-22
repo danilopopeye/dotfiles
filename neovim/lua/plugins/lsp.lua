@@ -177,6 +177,11 @@ return {
       }
 
       cmp.setup({
+        preselect = 'item',
+        completion = {
+          completeopt = 'menu,menuone,noinsert'
+        },
+
         snippet = {
           expand = function(args)
             require 'luasnip'.lsp_expand(args.body)
@@ -184,6 +189,7 @@ return {
         },
 
         sources = {
+          { name = "codeium" },
           { name = 'nvim_lsp_signature_help' },
           { name = 'luasnip',                max_item_count = 5 },
           { name = 'nvim_lsp' },
@@ -205,6 +211,9 @@ return {
               luasnip = "", -- 
               treesitter = "",
             }),
+            symbol_map = {
+              Codeium = "",
+            },
           })
         },
 
