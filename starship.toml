@@ -1,0 +1,18 @@
+add_newline = false
+
+
+# A minimal left prompt
+format = """$character"""
+
+# move the rest of the prompt to the right
+right_format = """$all"""
+
+[directory]
+truncation_length = 1
+truncation_symbol = "…/"
+fish_style_pwd_dir_length = 3
+
+
+[shlvl]
+disabled = false
+threshold = 3
