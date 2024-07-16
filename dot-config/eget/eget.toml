@@ -1,0 +1,30 @@
+[global]
+target = "~/.local/bin"
+upgrade_only = true
+
+["sachaos/viddy"]
+["dbrgn/tealdeer"]
+["atuinsh/atuin"]
+asset_filters = ["gnu.tar.gz"]
+["jdx/mise"]
+asset_filters = ["x64.tar.gz"]
+file = "btm"
+["dandavison/delta"]
+asset_filters = ["gnu.tar.gz"]
+["ogham/dog"]
+asset_filters = ["gnu.zip"]
+["sharkdp/bat"]
+asset_filters = ["gnu.tar.gz"]
+["sharkdp/fd"]
+asset_filters = ["gnu.tar.gz"]
+["starship/starship"]
+asset_filters = ["gnu.tar.gz"]
+["eza-community/eza"]
+asset_filters = ["gnu.tar.gz"]
+["jqlang/jq"]
+asset_filters = ["amd64"]
+
+# upgrade_only does not work for these:
+# ["BurntSushi/ripgrep"]
+# ["ClementTsang/bottom"]
+# asset_filters = ["gnu.tar.gz"]

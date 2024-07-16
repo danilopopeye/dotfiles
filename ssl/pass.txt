@@ -1,2 +1,0 @@
-server.orig.key: 87MSFJtDee
-cert: gc8veLT6hs
