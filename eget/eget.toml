@@ -1,6 +1,0 @@
-[global]
-target = "~/.local/bin"
-upgrade_only = true
-
-["eza-community/eza"]
-asset_filters = ["gnu", "tar.gz"]

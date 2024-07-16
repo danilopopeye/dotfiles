@@ -6,7 +6,6 @@ bindkey -e
 export REPORTTIME=10	# display how long all tasks over 10 seconds take
 export ENABLE_CORRECTION="true"
 # }}}
-
 # zsh history {{{
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
@@ -31,44 +30,39 @@ export HISTSIZE=11000
 export SAVEHIST=10000
 export HISTFILE=~/.zsh_history
 # }}}
-
 # aliases {{{
 alias ll='eza --long --classify auto --git'
 alias la='ll -a'
 alias lt='ll -T'
 alias vim=nvim
 alias k=kubectl
-alias ark=arkade
 alias watch=viddy
 alias grep=rg
-alias clip=/mnt/c/Windows/System32/clip.exe
-alias xclip=clip
-# alias ssh=wait-for-ssh
 alias soft-serve="ssh git.home "
-
-# moved to $HOME/.local/bin/{sqs,sns} scripts
-# alias sqs='aws --endpoint-url http://localhost:4100 sqs '
-# alias sns='aws --endpoint-url http://localhost:4100 sns '
+alias tldr=tealdeer
 # }}}
-
-# Setup fzf {{{
+# fzf {{{
 # if [[ ! "$PATH" == *$HOMEBREW_PREFIX/opt/fzf/bin* ]]; then
 #   export PATH="$PATH:$HOMEBREW_PREFIX/opt/fzf/bin"
 # fi
 # [[ $- == *i* ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh" 2> /dev/null
 # source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
 # }}}
+# mise {{{
+export PATH="$HOME/.local/share/mise/shims:$PATH"
+# }}}
 
 # source local config
 [[ -f $HOME/.zshlocal ]] && source $HOME/.zshlocal
 
-# compsys initialization
+# zsh completions
+FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+# compsys initialization {{{
 autoload -U compinit
 compinit
+# }}}
 
 # zprof
-
-# references & study
-# https://gitlab.com/yramagicman/stow-dotfiles/blob/2ecd5ddcc21a260b4a3df081767e554e2d5232ee/zshrc
 
 # vim:foldmethod=marker:foldlevel=0:nomodeline:
