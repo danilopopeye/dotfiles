@@ -1,3 +1,15 @@
 [tools]
-go = "1"
+go = "1.22"
 node = "lts"
+# mise completion
+usage = "latest"
+# cli stuff
+bat = "latest"
+bottom = "latest"
+delta = "latest"
+eza = "latest"
+fd = "latest"
+jq = "latest"
+ripgrep = "latest"
+starship = "latest"
+viddy = "latest"

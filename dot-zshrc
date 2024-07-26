@@ -50,10 +50,15 @@ alias tldr=tealdeer
 # }}}
 # mise {{{
 export PATH="$HOME/.local/share/mise/shims:$PATH"
+source "$HOME/.local/state/mise/activate.zsh"
+# }}}
+# starship {{{
+# starship init zsh > $HOME/.local/state/starship-init.zsh
+source "$HOME/.local/state/starship-init.zsh"
 # }}}
 
 # source local config
-[[ -f $HOME/.zshlocal ]] && source $HOME/.zshlocal
+test -f "$HOME/.zshlocal"  && source "$HOME/.zshlocal"
 
 # zsh completions
 FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
