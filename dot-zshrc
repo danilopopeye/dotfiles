@@ -53,8 +53,10 @@ export PATH="$HOME/.local/share/mise/shims:$PATH"
 source "$HOME/.local/state/mise/activate.zsh"
 # }}}
 # starship {{{
-# starship init zsh > $HOME/.local/state/starship-init.zsh
 source "$HOME/.local/state/starship-init.zsh"
+# }}}
+# atuin {{{
+source "$HOME/.local/state/atuin-init.zsh"
 # }}}
 
 # source local config
