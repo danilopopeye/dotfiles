@@ -1,9 +1,10 @@
 [tools]
-go = "1.22"
+go = "1.23"
 node = "lts"
 # mise completion
 usage = "latest"
 # cli stuff
+age = "1.2"
 bat = "latest"
 bottom = "latest"
 delta = "latest"
@@ -13,3 +14,6 @@ jq = "latest"
 ripgrep = "latest"
 starship = "latest"
 viddy = "latest"
+
+# [settings]
+# experimental = true

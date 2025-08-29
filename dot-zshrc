@@ -3,7 +3,7 @@
 
 # zsh configs {{{
 bindkey -e
-export REPORTTIME=10	# display how long all tasks over 10 seconds take
+export REPORTTIME=5	# display how long all tasks over 10 seconds take
 export ENABLE_CORRECTION="true"
 # }}}
 # zsh history {{{
@@ -63,7 +63,7 @@ source "$HOME/.local/state/atuin-init.zsh"
 test -f "$HOME/.zshlocal"  && source "$HOME/.zshlocal"
 
 # zsh completions
-FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+FPATH="/usr/local/share/zsh-completions:$FPATH"
 
 # compsys initialization {{{
 autoload -U compinit
@@ -71,5 +71,4 @@ compinit
 # }}}
 
 # zprof
-
 # vim:foldmethod=marker:foldlevel=0:nomodeline:
